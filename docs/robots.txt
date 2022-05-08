@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://shibaken28.github.io/my-blog/sitemap.xml

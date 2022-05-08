@@ -1,8 +1,9 @@
-baseURL: ""
-title: yu1hpa
+baseURL: "https://shibaken28.github.io/my-blog/"
+title: shibak3n
 theme: PaperMod
 defaultContentLanguage: ja
 googleAnalytics: ""
+publishDir: "docs"
 staticDir:
   - static
   - content/articles

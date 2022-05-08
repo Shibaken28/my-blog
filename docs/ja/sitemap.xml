@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://shibaken28.github.io/my-blog/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://shibaken28.github.io/my-blog/en/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://shibaken28.github.io/my-blog/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://shibaken28.github.io/my-blog/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://shibaken28.github.io/my-blog/en/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://shibaken28.github.io/my-blog/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://shibaken28.github.io/my-blog/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://shibaken28.github.io/my-blog/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ja"
+                href="https://shibaken28.github.io/my-blog/tags/"
+                />
+  </url>
+  
+</urlset>
