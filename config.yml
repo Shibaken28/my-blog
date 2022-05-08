@@ -1,0 +1,105 @@
+baseURL: ""
+title: yu1hpa
+theme: PaperMod
+defaultContentLanguage: ja
+googleAnalytics: ""
+staticDir:
+  - static
+  - content/articles
+
+enableInlineShortcodes: true
+enableEmoji: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+minify:
+    disableXML: true
+
+languages:
+    ja:
+        languageName: "🇯🇵"
+        weight: 1
+        homeInfoParams:
+            Title: "テスト"
+            Content: あ
+        menu:
+            main:
+                - name: AboutMe
+                  url: a
+                  weight: 1
+                - name: Archive
+                  url: archives
+                  weight: 5
+                - name: Search
+                  url: search
+                  weight: 10
+                - name: Tag
+                  url: tags
+                  weight: 10
+    en:
+        languageName: "En"
+        homeInfoParams:
+          Title: "Welcome!👋"
+          Content: Hi, I'm yu.
+        weight: 2
+        menu:
+            main:
+                - name: AboutMe
+                  url: a
+                  weight: 1
+                - name: Archive
+                  url: archives
+                  weight: 5
+                - name: Search
+                  url: search
+                  weight: 10
+                - name: Tags
+                  url: tags
+                  weight: 10
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+
+params:
+    env: production
+    googleAnalyticsID: ""
+    title: "My blog"
+    description: "This is a blog of mine"
+    author: "Me"
+    images: "/me.png"
+    DateFormat: "2006-01-02"
+    languageAltTitle: "English"
+    ShowReadingTime: true
+    ShowShareButtons: true
+    ShowCodeCopyButtons: true
+    defaultTheme: dark
+    ShowToc: true
+    displayFullLangName: true
+    ShowPostNavLinks: true
+    ShowBreadCrumbs: true
+    comments: false
+
+    # Suggest Changes to the article
+    editPost:
+        URL: ""
+        Text: "Suggest Changes"
+        appendFilePath: true
+
+    assets:
+        favicon: "/images/favicon.ico"
+        favicon16x16: "/images/favicon-16x16.png"
+        favicon32x32: "/images/favicon-32x32.png"
+        apple_touch_icon: "/images/apple-touch-icon.png"
+
+    socialIcons:
+        - name: github
+          url: ""
+        - name: twitter
+          url: ""
+        - name: cryptohack
+          url: ""
