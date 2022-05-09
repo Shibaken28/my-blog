@@ -9,7 +9,7 @@
       <link>https://shibaken28.github.io/my-blog/47</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 30 Apr 2022 13:41:37 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 May 2022 12:59:30 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CrewCTF 2022 - The Huge E</title>
       <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/crew/thehugee/</link>
@@ -23,6 +23,7 @@ p = 1275579338682747664927811681666517956452535511069398141033753613454235967038
 整数$k$と$l$を使って，${e_2}^{e_3} = \phi(p-1)k+l$と表されたとします．これは，${e_2}^{e_3}$を$\phi(p-1)$で割ったときに商が$k$，余りが$l$になったことを表しています． すると， $${e_1}^{{e_2}^{e_3}} = {e_1}^{ \phi(p-1)k+l} = ({e_1}^{\phi(p-1)})^k\cdot {e_1}^l = 1^k \cdot {e_1}^l = {e_1}^l \pmod{p-1}$$
 と計算できます．つまり，$l={e_2}^{e_3} \pmod{\phi(p-1)}$として，${e_1}^l \pmod{p-1}$を計算すれば$e$が求まります．</description>
     </item>
+    
     
     
   </channel>

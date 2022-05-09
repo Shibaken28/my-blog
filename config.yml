@@ -48,7 +48,7 @@ languages:
         menu:
             main:
                 - name: AboutMe
-                  url: a
+                  url: aboutme
                   weight: 1
                 - name: Archive
                   url: archives
