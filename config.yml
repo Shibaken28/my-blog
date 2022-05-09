@@ -2,7 +2,7 @@ baseURL: "https://shibaken28.github.io/my-blog/"
 title: shibak3n
 theme: PaperMod
 defaultContentLanguage: ja
-googleAnalytics: "G-M5H2SRTXPN"
+googleAnalytics: "G-6WN9NG9DQ2"
 publishDir: "docs"
 staticDir:
   - static
