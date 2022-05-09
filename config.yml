@@ -2,7 +2,7 @@ baseURL: "https://shibaken28.github.io/my-blog/"
 title: shibak3n
 theme: PaperMod
 defaultContentLanguage: ja
-googleAnalytics: ""
+googleAnalytics: "G-M5H2SRTXPN"
 publishDir: "docs"
 staticDir:
   - static
@@ -23,8 +23,8 @@ languages:
         languageName: "🇯🇵"
         weight: 1
         homeInfoParams:
-            Title: "テスト"
-            Content: あ
+            Title: "shibak3333333333333333333333n"
+            Content: 競プロやCTF(crypto)が好きな学生です．CTFのwriteupを中心に書きます．
         menu:
             main:
                 - name: AboutMe
@@ -42,8 +42,8 @@ languages:
     en:
         languageName: "En"
         homeInfoParams:
-          Title: "Welcome!👋"
-          Content: Hi, I'm yu.
+          Title: "shibak3333333333333333333333n"
+          Content: Hi, I'm shibak3n. I'm a student interested in cryptography. I'm mainly publishing writeups.
         weight: 2
         menu:
             main:
@@ -78,7 +78,7 @@ params:
     ShowReadingTime: true
     ShowShareButtons: true
     ShowCodeCopyButtons: true
-    defaultTheme: dark
+    defaultTheme: light
     ShowToc: true
     displayFullLangName: true
     ShowPostNavLinks: true
@@ -99,8 +99,8 @@ params:
 
     socialIcons:
         - name: github
-          url: ""
+          url: "https://github.com/Shibaken28"
         - name: twitter
-          url: ""
+          url: "https://twitter.com/Shibak3333n"
         - name: cryptohack
-          url: ""
+          url: "https://cryptohack.org/user/shiba28/"
