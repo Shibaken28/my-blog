@@ -28,7 +28,7 @@ languages:
         menu:
             main:
                 - name: AboutMe
-                  url: a
+                  url: aboutme
                   weight: 1
                 - name: Archive
                   url: archives
@@ -104,3 +104,5 @@ params:
           url: "https://twitter.com/Shibak3333n"
         - name: cryptohack
           url: "https://cryptohack.org/user/shiba28/"
+        - name: AtCoder
+          url: "https://atcoder.jp/users/shibaken496"
