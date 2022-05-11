@@ -9,7 +9,21 @@
       <link>https://shibaken28.github.io/my-blog/47</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 09 May 2022 12:59:30 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 May 2022 21:16:22 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>picoGym - rsa-pop-quiz</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/</link>
+      <pubDate>Wed, 11 May 2022 21:16:22 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/</guid>
+      <description>picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．
+概要 Class, take your seats! It&amp;#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．
+解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります． $p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
+pythonでは，$a^b \mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．
+解法 1問目 ncすると次のメッセージが表示されます．
+Good morning class! It&amp;#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!</description>
+    </item>
+    
     <item>
       <title>CrewCTF 2022 - The Huge E</title>
       <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/crew/thehugee/</link>
