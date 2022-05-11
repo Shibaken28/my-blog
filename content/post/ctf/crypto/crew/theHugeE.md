@@ -1,7 +1,7 @@
 ---
 title: "CrewCTF 2022 - The Huge E"
 date: 2022-05-09T12:59:30+09:00
-tags: ["ctf","crypto","writeup","RSA","smooth"]
+tags: ["ctf","crypto","writeup","RSA","smooth","easy"]
 draft: false
 ---
 
