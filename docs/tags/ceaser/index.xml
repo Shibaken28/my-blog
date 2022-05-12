@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ceaser on shibak3n</title>
+    <link>https://shibaken28.github.io/my-blog/tags/ceaser/</link>
+    <description>Recent content in ceaser on shibak3n</description>
+    <image>
+      <url>https://shibaken28.github.io/my-blog/47</url>
+      <link>https://shibaken28.github.io/my-blog/47</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 12 May 2022 11:31:06 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/tags/ceaser/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>picoGym - New Ceaser</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/new-ceaser/</link>
+      <pubDate>Thu, 12 May 2022 11:31:06 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/new-ceaser/</guid>
+      <description>概要 We found a brand new type of encryption, can you break the secret code? (Wrap with picoCTF{})
+mlnklfnknljflfmhjimkmhjhmljhjomhmmjkjpmmjmjkjpjojgjmjpjojojnjojmmkmlmijimhjmmj import string  LOWERCASE_OFFSET = ord(&amp;#34;a&amp;#34;) ALPHABET = string.ascii_lowercase[:16]  def b16_encode(plain): 	enc = &amp;#34;&amp;#34; 	for c in plain: 	binary = &amp;#34;{0:08b}&amp;#34;.format(ord(c)) 	enc += ALPHABET[int(binary[:4], 2)] 	enc += ALPHABET[int(binary[4:], 2)] 	return enc  def shift(c, k): 	t1 = ord(c) - LOWERCASE_OFFSET 	t2 = ord(k) - LOWERCASE_OFFSET 	return ALPHABET[(t1 + t2) % len(ALPHABET)]  flag = &amp;#34;redacted&amp;#34; key = &amp;#34;redacted&amp;#34; assert all([k in ALPHABET for k in key]) assert len(key) == 1  b16 = b16_encode(flag) enc = &amp;#34;&amp;#34; for i, c in enumerate(b16): 	enc += shift(c, key[i % len(key)]) print(enc) 解答 フラグは，b16_encode，shiftの順に，2段階でエンコードされているので，逆順にデコードしていく． shiftに関しては，assertの条件により，せいぜい16通りである．</description>
+    </item>
+    
+  </channel>
+</rss>
