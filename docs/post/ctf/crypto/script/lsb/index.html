@@ -19,7 +19,7 @@
 <meta name="keywords" content="ctf, crypto, RSA, LSB">
 <meta name="description" content="LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)
 理論 $$(2m)^e = 2^em^e = 2^ec\mod n$$ が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．
- もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になるｊ もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&lt;m&lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&lt;m&lt;n$であることがわかる．
+ もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&lt;m&lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&lt;m&lt;n$であることがわかる．
 次に，$4^ec\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\mod n$が成り立つから，$4m\mod n$の値が返ってくる． 例えば，$2m\mod n$の出力が偶数で，$0\leq m&lt;\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
  $0\leq4m&lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&lt;2n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&lt;frac{1}{2}n$であることがわかる．
 同様に，$2m\mod n$の出力が奇数で，$\frac{1}{2}n\leq m&lt;n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
@@ -60,7 +60,7 @@ if (!doNotTrack) {
 </script><meta property="og:title" content="LSB Decryption Oracle Attackの実装" />
 <meta property="og:description" content="LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)
 理論 $$(2m)^e = 2^em^e = 2^ec\mod n$$ が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．
- もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になるｊ もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&lt;m&lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&lt;m&lt;n$であることがわかる．
+ もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&lt;m&lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&lt;m&lt;n$であることがわかる．
 次に，$4^ec\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\mod n$が成り立つから，$4m\mod n$の値が返ってくる． 例えば，$2m\mod n$の出力が偶数で，$0\leq m&lt;\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
  $0\leq4m&lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&lt;2n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&lt;frac{1}{2}n$であることがわかる．
 同様に，$2m\mod n$の出力が奇数で，$\frac{1}{2}n\leq m&lt;n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
@@ -76,7 +76,7 @@ if (!doNotTrack) {
 <meta name="twitter:title" content="LSB Decryption Oracle Attackの実装"/>
 <meta name="twitter:description" content="LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)
 理論 $$(2m)^e = 2^em^e = 2^ec\mod n$$ が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．
- もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になるｊ もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&lt;m&lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&lt;m&lt;n$であることがわかる．
+ もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&lt;m&lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&lt;m&lt;n$であることがわかる．
 次に，$4^ec\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\mod n$が成り立つから，$4m\mod n$の値が返ってくる． 例えば，$2m\mod n$の出力が偶数で，$0\leq m&lt;\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
  $0\leq4m&lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&lt;2n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&lt;frac{1}{2}n$であることがわかる．
 同様に，$2m\mod n$の出力が奇数で，$\frac{1}{2}n\leq m&lt;n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
@@ -109,12 +109,12 @@ if (!doNotTrack) {
   "@type": "BlogPosting",
   "headline": "LSB Decryption Oracle Attackの実装",
   "name": "LSB Decryption Oracle Attackの実装",
-  "description": "LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)\n理論 $$(2m)^e = 2^em^e = 2^ec\\mod n$$ が成り立つため，$2^ec\\mod n$を入力として与えると，$(2m)^e\\mod n$を復元することになるため，$2m \\mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．\n もし，$0\\leq2m\u0026lt;n$の場合，$2m\\mod n$と$2m$は等しいため，$2m \\mod n$は必ず偶数になるｊ もし，$n\\leq2m\u0026lt;2n$の場合，$2m\\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\\mod n$は必ず奇数になる．  $0\u0026lt;m\u0026lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\\mod n$が偶数なら$0\u0026lt;m\u0026lt;\\frac{1}{2}n$，奇数なら$\\frac{1}{2}n\u0026lt;m\u0026lt;n$であることがわかる．\n次に，$4^ec\\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\\mod n$が成り立つから，$4m\\mod n$の値が返ってくる． 例えば，$2m\\mod n$の出力が偶数で，$0\\leq m\u0026lt;\\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\\mod n$の偶奇は次のように決まっている．\n $0\\leq4m\u0026lt;n$の場合，$4m\\mod n$は$4m$と等しいため，$4m\\mod n$は必ず偶数になる． $n\\leq4m\u0026lt;2n$の場合，$4m\\mod n$は$4m$と等しいため，$4m\\mod n$は必ず偶数になる．  よって，$2m\\mod n$が偶数で， かつ$4m\\mod n$が偶数のときは，$0\\leq m\u0026lt;\\frac{1}{4}n$，奇数のときは$\\frac{1}{4}n\\leq m\u0026lt;frac{1}{2}n$であることがわかる．\n同様に，$2m\\mod n$の出力が奇数で，$\\frac{1}{2}n\\leq m\u0026lt;n$であることが，わかっていたとする．このとき，$4m\\mod n$の偶奇は次のように決まっている．\n $2n\\leq4m\u0026lt;3n$の場合，$4m\\mod n$は$4m-2n$と等しいため，$4m\\mod n$は必ず偶数になる． $3n\\leq4m\u0026lt;4n$の場合，$4m\\mod n$は$4m-3n$と等しいため，$4m\\mod n$は必ず奇数になる．  よって，$2m\\mod n$が奇数で， かつ$4m\\mod n$が偶数のときは，$\\frac{1}{2}n\\leq m\u0026lt;\\frac{3}{4}n$，奇数のときは$\\frac{3}{4}n\\leq m\u0026lt;n$であることがわかる．",
+  "description": "LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)\n理論 $$(2m)^e = 2^em^e = 2^ec\\mod n$$ が成り立つため，$2^ec\\mod n$を入力として与えると，$(2m)^e\\mod n$を復元することになるため，$2m \\mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．\n もし，$0\\leq2m\u0026lt;n$の場合，$2m\\mod n$と$2m$は等しいため，$2m \\mod n$は必ず偶数になる． もし，$n\\leq2m\u0026lt;2n$の場合，$2m\\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\\mod n$は必ず奇数になる．  $0\u0026lt;m\u0026lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\\mod n$が偶数なら$0\u0026lt;m\u0026lt;\\frac{1}{2}n$，奇数なら$\\frac{1}{2}n\u0026lt;m\u0026lt;n$であることがわかる．\n次に，$4^ec\\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\\mod n$が成り立つから，$4m\\mod n$の値が返ってくる． 例えば，$2m\\mod n$の出力が偶数で，$0\\leq m\u0026lt;\\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\\mod n$の偶奇は次のように決まっている．\n $0\\leq4m\u0026lt;n$の場合，$4m\\mod n$は$4m$と等しいため，$4m\\mod n$は必ず偶数になる． $n\\leq4m\u0026lt;2n$の場合，$4m\\mod n$は$4m$と等しいため，$4m\\mod n$は必ず偶数になる．  よって，$2m\\mod n$が偶数で， かつ$4m\\mod n$が偶数のときは，$0\\leq m\u0026lt;\\frac{1}{4}n$，奇数のときは$\\frac{1}{4}n\\leq m\u0026lt;frac{1}{2}n$であることがわかる．\n同様に，$2m\\mod n$の出力が奇数で，$\\frac{1}{2}n\\leq m\u0026lt;n$であることが，わかっていたとする．このとき，$4m\\mod n$の偶奇は次のように決まっている．\n $2n\\leq4m\u0026lt;3n$の場合，$4m\\mod n$は$4m-2n$と等しいため，$4m\\mod n$は必ず偶数になる． $3n\\leq4m\u0026lt;4n$の場合，$4m\\mod n$は$4m-3n$と等しいため，$4m\\mod n$は必ず奇数になる．  よって，$2m\\mod n$が奇数で， かつ$4m\\mod n$が偶数のときは，$\\frac{1}{2}n\\leq m\u0026lt;\\frac{3}{4}n$，奇数のときは$\\frac{3}{4}n\\leq m\u0026lt;n$であることがわかる．",
   "keywords": [
     "ctf", "crypto", "RSA", "LSB"
   ],
-  "articleBody": "LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)\n理論 $$(2m)^e = 2^em^e = 2^ec\\mod n$$ が成り立つため，$2^ec\\mod n$を入力として与えると，$(2m)^e\\mod n$を復元することになるため，$2m \\mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．\n もし，$0\\leq2mもし，$n\\leq2m $0次に，$4^ec\\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\\mod n$が成り立つから，$4m\\mod n$の値が返ってくる． 例えば，$2m\\mod n$の出力が偶数で，$0\\leq m$0\\leq4m$n\\leq4m よって，$2m\\mod n$が偶数で， かつ$4m\\mod n$が偶数のときは，$0\\leq m同様に，$2m\\mod n$の出力が奇数で，$\\frac{1}{2}n\\leq m$2n\\leq4m$3n\\leq4m よって，$2m\\mod n$が奇数で， かつ$4m\\mod n$が偶数のときは，$\\frac{1}{2}n\\leq mこれを繰り返していくと，二分探索の要領でどんどん$m$の取りうる値が半分になっていき，最終的に$m$の値が求まる．\n実装例 始めは整数でlとrを動かしたが，求まる平文が20ほどずれてしまった． 有理数を使うと誤差が出ない．\nfrom pwn import * from Crypto.Util.number import * from gmpy2 import iroot import re # Python Version: 3.x from fractions import Fraction from math import ceil  p = getPrime(256) q = getPrime(256) n = p*q m = bytes_to_long(b\"flag{this_is_flag}\") e = 0x10001 c = pow(m,e,n) d = pow(e,-1,(p-1)*(q-1)) assert mn assert pow(c,d,n)==m  def dec(x):  return pow(x,d,n)  l = 0 r = n a = 1 while abs(r-l)1:  b=(c*pow(2,a*e,n))%n  de = dec(b)  mid = Fraction(l + r, 2)  if de%2==0:  r = mid  else:  l = mid  a+=1 print(ceil(l)) print(m) 参考サイト  plain RSAに対するLSB decryption oracle attackをやってみる LSB Leak Attackを実装した  を参考にさせて頂きました．\n",
-  "wordCount" : "174",
+  "articleBody": "LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)\n理論 $$(2m)^e = 2^em^e = 2^ec\\mod n$$ が成り立つため，$2^ec\\mod n$を入力として与えると，$(2m)^e\\mod n$を復元することになるため，$2m \\mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．\n もし，$0\\leq2mもし，$n\\leq2m $0次に，$4^ec\\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\\mod n$が成り立つから，$4m\\mod n$の値が返ってくる． 例えば，$2m\\mod n$の出力が偶数で，$0\\leq m$0\\leq4m$n\\leq4m よって，$2m\\mod n$が偶数で， かつ$4m\\mod n$が偶数のときは，$0\\leq m同様に，$2m\\mod n$の出力が奇数で，$\\frac{1}{2}n\\leq m$2n\\leq4m$3n\\leq4m よって，$2m\\mod n$が奇数で， かつ$4m\\mod n$が偶数のときは，$\\frac{1}{2}n\\leq mこれを繰り返していくと，二分探索の要領でどんどん$m$の取りうる値が半分になっていき，最終的に$m$の値が求まる．\n実装例 整数でl,rを動かすと誤差が出てしまうため，有理数を使っている．\nfrom Crypto.Util.number import * from fractions import Fraction from math import ceil  p = getPrime(256) q = getPrime(256) n = p*q m = bytes_to_long(b\"flag{this_is_flag}\") e = 0x10001 c = pow(m,e,n) d = pow(e,-1,(p-1)*(q-1)) assert mn assert pow(c,d,n)==m  def dec(x):  return pow(x,d,n)  l = 0 r = n a = 1 while abs(r-l)1:  b=(c*pow(2,a*e,n))%n  de = dec(b)  mid = Fraction(l + r, 2)  if de%2==0:  r = mid  else:  l = mid  a+=1 print(ceil(l)) print(m) 参考サイト  plain RSAに対するLSB decryption oracle attackをやってみる LSB Leak Attackを実装した  を参考にさせて頂きました．\n",
+  "wordCount" : "159",
   "inLanguage": "ja",
   "datePublished": "2022-05-12T19:33:13+09:00",
   "dateModified": "2022-05-12T19:33:13+09:00",
@@ -247,7 +247,7 @@ if (!doNotTrack) {
 が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる．
 この値の偶奇で$m$の範囲がわかる．</p>
 <ul>
-<li>もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になるｊ</li>
+<li>もし，$0\leq2m&lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる．</li>
 <li>もし，$n\leq2m&lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．</li>
 </ul>
 <p>$0&lt;m&lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない．
@@ -269,13 +269,8 @@ if (!doNotTrack) {
 かつ$4m\mod n$が偶数のときは，$\frac{1}{2}n\leq m&lt;\frac{3}{4}n$，奇数のときは$\frac{3}{4}n\leq m&lt;n$であることがわかる．</p>
 <p>これを繰り返していくと，二分探索の要領でどんどん$m$の取りうる値が半分になっていき，最終的に$m$の値が求まる．</p>
 <h3 id="実装例">実装例<a hidden class="anchor" aria-hidden="true" href="#実装例">#</a></h3>
-<p>始めは整数で<code>l</code>と<code>r</code>を動かしたが，求まる平文が20ほどずれてしまった．
-有理数を使うと誤差が出ない．</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> gmpy2 <span style="color:#f92672">import</span> iroot
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Python Version: 3.x</span>
+<p>整数で<code>l,r</code>を動かすと誤差が出てしまうため，有理数を使っている．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Util.number <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fractions <span style="color:#f92672">import</span> Fraction
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> math <span style="color:#f92672">import</span> ceil
 </span></span><span style="display:flex;"><span>

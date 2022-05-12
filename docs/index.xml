@@ -18,7 +18,7 @@
       <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/script/lsb/</guid>
       <description>LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)
 理論 $$(2m)^e = 2^em^e = 2^ec\mod n$$ が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．
- もし，$0\leq2m&amp;lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になるｊ もし，$n\leq2m&amp;lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&amp;lt;m&amp;lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&amp;lt;m&amp;lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&amp;lt;m&amp;lt;n$であることがわかる．
+ もし，$0\leq2m&amp;lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&amp;lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&amp;lt;m&amp;lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&amp;lt;m&amp;lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&amp;lt;m&amp;lt;n$であることがわかる．
 次に，$4^ec\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\mod n$が成り立つから，$4m\mod n$の値が返ってくる． 例えば，$2m\mod n$の出力が偶数で，$0\leq m&amp;lt;\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
  $0\leq4m&amp;lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&amp;lt;2n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&amp;lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&amp;lt;frac{1}{2}n$であることがわかる．
 同様に，$2m\mod n$の出力が奇数で，$\frac{1}{2}n\leq m&amp;lt;n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
@@ -96,6 +96,22 @@ p = 1275579338682747664927811681666517956452535511069398141033753613454235967038
 解答 $e$の値は$\bmod {\phi(p)}$の世界で考えても問題ありません． ${e_1}^{{e_2}^{e_3}} \pmod{\phi(p)}$の値を求めていきます． オイラーの定理より，次が成り立ちます． $${e_1}^{\phi(\phi(p))} = 1 \pmod{\phi(p)} $$ $p$は素数であるので，$\phi(p)=p-1$です(フェルマーの小定理)．よって，次のように書き換えられます． $${e_1}^{\phi(p-1)} = 1 \pmod{p-1}$$
 整数$k$と$l$を使って，${e_2}^{e_3} = \phi(p-1)k+l$と表されたとします．これは，${e_2}^{e_3}$を$\phi(p-1)$で割ったときに商が$k$，余りが$l$になったことを表しています． すると， $${e_1}^{{e_2}^{e_3}} = {e_1}^{ \phi(p-1)k+l} = ({e_1}^{\phi(p-1)})^k\cdot {e_1}^l = 1^k \cdot {e_1}^l = {e_1}^l \pmod{p-1}$$
 と計算できます．つまり，$l={e_2}^{e_3} \pmod{\phi(p-1)}$として，${e_1}^l \pmod{p-1}$を計算すれば$e$が求まります．</description>
+    </item>
+    
+    <item>
+      <title>crypto問でよく使うライブラリ，関数など</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/general/</link>
+      <pubDate>Mon, 09 May 2022 01:34:02 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/general/</guid>
+      <description>目的 しょっちゅう忘れてはググってるのでまとめます．
+Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
+&amp;gt;&amp;gt;&amp;gt; bytes_to_long(b&amp;#39;hello&amp;#39;) 448378203247 &amp;gt;&amp;gt;&amp;gt; long_to_bytes(0x68656c6c6f) b&amp;#39;hello&amp;#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．
+&amp;gt;&amp;gt;&amp;gt; inverse(3,7) 5 &amp;gt;&amp;gt;&amp;gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．
+&amp;gt;&amp;gt;&amp;gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される
+&amp;gt;&amp;gt;&amp;gt; getPrime(10) 911 &amp;gt;&amp;gt;&amp;gt; bin(911) &amp;#39;0b1110001111&amp;#39; &amp;gt;&amp;gt;&amp;gt; Crypto.PublicKey pemファイルを開くことができる． 使用例
+from Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(&amp;#39;key.pem&amp;#39;,&amp;#39;rb&amp;#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&amp;#34;n:&amp;#34;,pubkey.n) print(&amp;#34;e:&amp;#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
+sagemath  </description>
     </item>
     
     

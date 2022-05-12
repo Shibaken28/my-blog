@@ -15,7 +15,7 @@ RSA暗号において，何度も暗号文を復元してくれて，その最�
 $$(2m)^e = 2^em^e = 2^ec\mod n$$
 が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる．
 この値の偶奇で$m$の範囲がわかる．
-- もし，$0\leq2m<n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になるｊ
+- もし，$0\leq2m<n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる．
 - もし，$n\leq2m<2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．
 
 $0<m<n$であるから，$2m$がこれ以外の値の範囲をとることはない．
@@ -39,14 +39,9 @@ $0<m<n$であるから，$2m$がこれ以外の値の範囲をとることはな
 これを繰り返していくと，二分探索の要領でどんどん$m$の取りうる値が半分になっていき，最終的に$m$の値が求まる．
 
 ### 実装例
-始めは整数で`l`と`r`を動かしたが，求まる平文が20ほどずれてしまった．
-有理数を使うと誤差が出ない．
+整数で`l,r`を動かすと誤差が出てしまうため，有理数を使っている．
 ```python
-from pwn import *
 from Crypto.Util.number import *
-from gmpy2 import iroot
-import re
-# Python Version: 3.x
 from fractions import Fraction
 from math import ceil
 

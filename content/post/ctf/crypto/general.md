@@ -1,7 +1,8 @@
 ---
 title: "crypto問でよく使うライブラリ，関数など"
 date: 2022-05-09T01:34:02+09:00
-draft: true
+tags: ["ctf","crypto"]
+draft: false
 ---
 
 
@@ -49,7 +50,7 @@ pemファイルを開くことができる．
 使用例
 ```python
 from Crypto.PublicKey import RSA
-f=open('key.pem','rb')
+openssl rsa -text -in idk.keyf=open('key.pem','rb')
 pubkey = RSA.importKey(f.read())
 print(pubkey)
 print("n:",pubkey.n)
