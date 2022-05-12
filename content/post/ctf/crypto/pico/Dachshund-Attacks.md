@@ -1,5 +1,5 @@
 ---
-title: "Dachshund Attacks"
+title: "picoGym - Dachshund Attacks"
 date: 2022-05-12T12:23:40+09:00
 tags: ["ctf","crypto","writeup","RSA","warmup"]
 draft: false
@@ -18,7 +18,7 @@ c: 30156643564028622673402640319494318578298751067165305755816959327117523569994
 
 ## 解答
 `e`が大きいということは，`d`が小さくなるので，Wiener's attackが有効．
-(Wiener's attack 短い秘密鍵のRSA暗号への攻撃)[https://cryptee.blogspot.com/2018/10/rsawieners-attack.html)を参考にさせて頂きました．
+[Wiener's attack 短い秘密鍵のRSA暗号への攻撃](https://cryptee.blogspot.com/2018/10/rsawieners-attack.html)を参考にさせて頂きました．
 
 ```python
 from Crypto.Util.number import long_to_bytes
