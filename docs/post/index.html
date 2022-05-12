@@ -152,6 +152,19 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>picoGym - Easy Peasy
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>概要 A one-time pad is unbreakable, but can you manage to recover the flag? (Wrap with picoCTF{}) nc mercury.picoctf.net 64260 otp.py
+#!/usr/bin/python3 -u import os.path  KEY_FILE = &#34;key&#34; KEY_LEN = 50000 FLAG_FILE = &#34;flag&#34;   def startup(key_location): 	flag = open(FLAG_FILE).read() 	kf = open(KEY_FILE, &#34;rb&#34;).read()  	start = key_location 	stop = key_location &#43; len(flag)  	key = kf[start:stop] 	key_location = stop  	result = list(map(lambda p, k: &#34;{:02x}&#34;....</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-05-12 10:46:41 +0900 JST'>2022-05-12</span>&nbsp;·&nbsp;2 分&nbsp;·&nbsp;Me</footer>
+  <a class="entry-link" aria-label="post link to picoGym - Easy Peasy" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/easy-peasy/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>picoGym - Mini RSA
     </h2>
   </header>
@@ -173,7 +186,8 @@ from pwn import * from Crypto.Util.number import long_to_bytes from gmpy2 import
   <div class="entry-content">
     <p>picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．
 概要 Class, take your seats! It&#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．
-解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります． $p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
+解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．
+$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
 pythonでは，$a^b \mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．
 解法 1問目 ncすると次のメッセージが表示されます．
 Good morning class! It&#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!...</p>
