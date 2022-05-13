@@ -18,9 +18,9 @@
       <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/script/lsb/</guid>
       <description>LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)
 理論 $$(2m)^e = 2^em^e = 2^ec\mod n$$ が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．
- もし，$0\leq2m&amp;lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&amp;lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&amp;lt;m&amp;lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0&amp;lt;m&amp;lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n&amp;lt;m&amp;lt;n$であることがわかる．
+ もし，$0\leq2m&amp;lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&amp;lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&amp;lt;m&amp;lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0\leq m&amp;lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n\leq m&amp;lt;n$であることがわかる．
 次に，$4^ec\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\mod n$が成り立つから，$4m\mod n$の値が返ってくる． 例えば，$2m\mod n$の出力が偶数で，$0\leq m&amp;lt;\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
- $0\leq4m&amp;lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&amp;lt;2n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&amp;lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&amp;lt;frac{1}{2}n$であることがわかる．
+ $0\leq4m&amp;lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&amp;lt;2n$の場合，$4m\mod n$は$4m-n$と等しいため，$4m\mod n$は必ず奇数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&amp;lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&amp;lt;\frac{1}{2}n$であることがわかる．
 同様に，$2m\mod n$の出力が奇数で，$\frac{1}{2}n\leq m&amp;lt;n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
  $2n\leq4m&amp;lt;3n$の場合，$4m\mod n$は$4m-2n$と等しいため，$4m\mod n$は必ず偶数になる． $3n\leq4m&amp;lt;4n$の場合，$4m\mod n$は$4m-3n$と等しいため，$4m\mod n$は必ず奇数になる．  よって，$2m\mod n$が奇数で， かつ$4m\mod n$が偶数のときは，$\frac{1}{2}n\leq m&amp;lt;\frac{3}{4}n$，奇数のときは$\frac{3}{4}n\leq m&amp;lt;n$であることがわかる．</description>
     </item>
