@@ -2,7 +2,7 @@
 title: "TSG lIVE! 8 CTFに参加しました"
 date: 2022-05-14T14:49:48+09:00
 tags: ["ctf","crypto","writeup","RSA","easy"]
-draft: true
+draft: false
 ---
 
 ## はじめに

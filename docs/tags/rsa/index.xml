@@ -9,7 +9,21 @@
       <link>https://shibaken28.github.io/my-blog/47</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 12 May 2022 19:33:13 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/tags/rsa/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 May 2022 14:49:48 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/tags/rsa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TSG lIVE! 8 CTFに参加しました</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/tsg8/all/</link>
+      <pubDate>Sat, 14 May 2022 14:49:48 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/tsg8/all/</guid>
+      <description>はじめに TSG lIVE! 8 CTFにチーム参加しました． crypto問を3問中2つ解いたのでwriteupを書きます．
+Forgetful RSA - 200pt flagの上位$i$bitを$f_i$と表すことにする．また，$f_i^e \mod n =c_i$とする． 出力された配列cを見ると，小さい$i$について$f_i^e&amp;lt;n$であり，$f_i^e = c_i$予想できる．
+(f_4)**e = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 (f_3)**e = 43180842775472231269317593140019978555800018221814069251185173508429590158121352898575375173614411328027364697307483179849754947341597334682650188852903738734312355518341064453125 (f_2)**e = 231584178474632390847141970017375815706539969331281128078915168015826259279872 (f_1)**e = 1 例えば，次のようにプログラムを掛けば
+&amp;gt;&amp;gt;&amp;gt; from gmpy2 import iroot &amp;gt;&amp;gt;&amp;gt; e = 0x101 &amp;gt;&amp;gt;&amp;gt; c = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 &amp;gt;&amp;gt;&amp;gt; iroot(c,e) (mpz(10), True) &amp;gt;&amp;gt;&amp;gt; flagの上位4bitが0b1010であることがわかる．
+次に，最大公約数をうまく使うことで$n$を求める． $f_5^e n=c_5\mod n$より，$f_5^e - c_5 = 0 \mod n$で，$f_5^e -c_5$は$n$の倍数である． 同様に，$f_6^e - c_6$も$n$の倍数であるから，これらの最大公約数をとることで$n$が得られる． $f_5$，$f_6$として考えられる値はたかだか$4$通りであるため，全て試せばいい．
+from Crypto.Util.number import GCD c.reverse() a0 = pow(0b10100,e) a1 = pow(0b10101,e) a00 = pow(0b101000,e) a01 = pow(0b101001,e) a10 = pow(0b101010,e) a11 = pow(0b101011,e) print(GCD(a0-c[5],a00-c[6])) print(GCD(a0-c[5],a01-c[6])) print(GCD(a1-c[5],a10-c[6])) print(GCD(a1-c[5],a11-c[6])) 結果は以下の通りである．</description>
+    </item>
+    
     <item>
       <title>LSB Decryption Oracle Attackの実装</title>
       <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/script/lsb/</link>
