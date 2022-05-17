@@ -9,7 +9,7 @@ draft: false
 TSG lIVE! 8 CTFにチーム参加しました．
 crypto問を3問中2つ解いたのでwriteupを書きます．
 
-## Forgetful RSA - 200pt
+## Forgetful RSA 
 `flag`の上位$i$bitを$f_i$と表すことにする．また，$f_i^e \mod n =c_i$とする．
 出力された配列`c`を見ると，小さい$i$について$f_i^e<n$であり，$f_i^e = c_i$予想できる．
 
