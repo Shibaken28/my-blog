@@ -9,7 +9,16 @@
       <link>https://shibaken28.github.io/my-blog/47</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 14 May 2022 14:49:48 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Jun 2022 19:34:10 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>競プロでのやらかし</title>
+      <link>https://shibaken28.github.io/my-blog/post/kyopro/wa/</link>
+      <pubDate>Sat, 04 Jun 2022 19:34:10 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/kyopro/wa/</guid>
+      <description>前提  コンパイルするファイルが間違っている 実行するファイルが間違っている コンパイルに失敗し，前回コンパイル成功時のファイルを実行している  コンパイルできない  ヘッダがない  人のコードパクってきたときにfuncional.hがなかった   using namespaceがない 変数名とdefineの重複  コーナーケース  N=1,K=0などの極端な値 A=Bのとき 同じクエリが複数回来るかもしれない 自己ループ，同じ辺 0の0乗  実行が終わらない  入力を受け取りすぎている  クエリの数Qと要素数Nが混同してしまう   n重for文でインクリメントする変数を間違える n重for文で変数名が重複 計算量が多い  setに要素を大量に入れている可能性    セグフォ  実行中に空文字が登場しセグフォ 0,1-indexedの混同  その他ハマり  01ナップザックで昇順にdpを回してしまった  それは個数制限なし   bool型をint型だと思って  bool値に2以上を入れてもサイレントに1になる   ソート後の配列をソート前の状態として扱ってしまった 格子点とグリッドマス目の関係  角の座標の扱い   不等式における累乗の注意  偶数乗した場合負の数が正になる   modを取りながら累積和したときに負の数がでる  (A[r]-A[l-1]+mod)%mod みたいな配慮    </description>
+    </item>
+    
     <item>
       <title>TSG lIVE! 8 CTFに参加しました</title>
       <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/tsg8/all/</link>
