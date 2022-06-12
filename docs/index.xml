@@ -11,12 +11,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 04 Jun 2022 19:34:10 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>競プロでのやらかし</title>
+      <title>コーディングでのやらかし&#34;</title>
       <link>https://shibaken28.github.io/my-blog/post/kyopro/wa/</link>
       <pubDate>Sat, 04 Jun 2022 19:34:10 +0900</pubDate>
       
       <guid>https://shibaken28.github.io/my-blog/post/kyopro/wa/</guid>
-      <description>前提  コンパイルするファイルが間違っている 実行するファイルが間違っている コンパイルに失敗し，前回コンパイル成功時のファイルを実行している  コンパイルできない  ヘッダがない  人のコードパクってきたときにfuncional.hがなかった   using namespaceがない 変数名とdefineの重複 vector&amp;lt;vector&amp;lt;long&amp;gt;&amp;gt; A(N,vector&amp;lt;int&amp;gt;(0))みたいに型が一致していない &amp;lt;Templete T&amp;gt;の書き忘れ  コーナーケース  N=1,K=0などの極端な値 A=Bのとき 同じクエリが複数回来るかもしれない 自己ループ，同じ辺 0の0乗  実行が終わらない  入力を受け取りすぎている  クエリの数Qと要素数Nが混同してしまう   n重for文でインクリメントする変数を間違える n重for文で変数名が重複 計算量が多い  setに要素を大量に入れている可能性    セグフォ  cinを忘れている 二項係数ライブラリとかの前計算した配列の範囲外参照 文字列の操作中に空文字が登場する 0,1-indexedの混同  その他ハマり modを正しく取れていない  modを取ってない mod(法)の値が間違っている(998244353,1e9+7) modの取り方を間違っている  法が素数でない，逆元が存在しない mod 3とかでの二項係数はルーカスの定理を使う   modを取りながら累積和したときに負の数がでる  (A[r]-A[l-1]+mod)%mod みたいな配慮   最後にマイナス1などをしている(0のときに-1が出力されてしまう)  未分類  改行(flush)しないと標準出力にでてこない cin&amp;raquo;a,b;みたいなことをしている  エラーが出ないことがあるのでハマりやすい   switch文でbreak忘れ make clean 型のパース，intをlongの計算にそのまま突っ込むのは良くない コンストラクタの名前を間違えている 閉区間，半開区間などの違い setやmapでstd::lower_boundなどは使えない  メソッドとして用意されている   01ナップザックで昇順にdpを回してしまった  それは個数制限なし   bool型をint型だと思って  bool値に2以上を入れてもサイレントに1になる   ソート後の配列をソート前の状態として扱ってしまった 格子点とグリッドマス目の関係  角の座標の扱い   不等式における累乗の注意  偶数乗した場合負の数が正になる   ビットシフト演算子の計算順序  遅め(1&amp;laquo;2+2は1&amp;laquo;4で16になる)    </description>
+      <description>競プロメインです．
+C,C++など 前提  コンパイルするファイルが間違っている 実行するファイルが間違っている コンパイルに失敗し，前回コンパイル成功時のファイルを実行している  コンパイルできない  ヘッダがない  人のコードパクってきたときにfuncional.hがなかった   using namespaceがない 変数名とdefineの重複 vector&amp;lt;vector&amp;lt;long&amp;gt;&amp;gt; A(N,vector&amp;lt;int&amp;gt;(0))みたいに型が一致していない &amp;lt;Templete T&amp;gt;の書き忘れ  コーナーケース  N=1,K=0などの極端な値 A=Bのとき 同じクエリが複数回来るかもしれない 自己ループ，同じ辺 0の0乗  実行が終わらない  入力を受け取りすぎている  クエリの数Qと要素数Nが混同してしまう   n重for文でインクリメントする変数を間違える n重for文で変数名が重複 計算量が多い  setに要素を大量に入れている可能性    セグフォ  cinを忘れている 二項係数ライブラリとかの前計算した配列の範囲外参照 文字列の操作中に空文字が登場する 0,1-indexedの混同  その他ハマり modを正しく取れていない  modを取ってない mod(法)の値が間違っている(998244353,1e9+7) modの取り方を間違っている  法が素数でない，逆元が存在しない mod 3とかでの二項係数はルーカスの定理を使う   modを取りながら累積和したときに負の数がでる  (A[r]-A[l-1]+mod)%modみたいな配慮   最後にマイナス1などをしている(0のときに-1が出力されてしまう)  未分類  改行(flush)しないと標準出力にでてこない cin&amp;gt;&amp;gt;a,b;みたいなことをしている  エラーが出ないことがあるのでハマりやすい   switch文でbreak忘れ make clean 型のパース，intをlongの計算にそのまま突っ込むのは良くない コンストラクタの名前を間違えている 閉区間，半開区間などの違い setやmapでstd::lower_boundなどは使えない  メソッドとして用意されている   01ナップザックで昇順にdpを回してしまった  それは個数制限なし   bool型をint型だと思って  bool値に2以上を入れてもサイレントに1になる   ソート後の配列をソート前の状態として扱ってしまった 格子点とグリッドマス目の関係  角の座標の扱い   不等式における累乗の注意  偶数乗した場合負の数が正になる   ビットシフト演算子の計算順序  遅め(1&amp;lt;&amp;lt;2+2は1&amp;lt;&amp;lt;4で16になる)    (La)TeX  コンパイル時にできるファイルを一旦削除する _などの文字はエスケープしてあげる  </description>
     </item>
     
     <item>
