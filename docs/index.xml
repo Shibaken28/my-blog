@@ -21,6 +21,22 @@ C,C++など 前提  コンパイルするファイルが間違っている 実�
     </item>
     
     <item>
+      <title>競プロで痒いところに手が届くかもしれない情報まとめ</title>
+      <link>https://shibaken28.github.io/my-blog/post/kyopro/tec/</link>
+      <pubDate>Sun, 22 May 2022 03:00:38 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/kyopro/tec/</guid>
+      <description>注意  内容の正しさの保証はしません． その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．  define #define all(a) a.begin(),a.end() sort(A.begin(),A.end())やlower_boud(A.begin(),A.end(),x)を， sort(all(A))，lower(all(A),x)のように短縮できる．
+vector unique 次のコードで重複を削除する．uniqueは，重複した要素を配列の後ろに追いやるので，その部分をeraseで削除する．sortする必要がある．計算量は$O(要素数)$
+vector&amp;lt;int&amp;gt; A= {3,1,4,1,5}; sort(all(A)); A.erase(unique(all(A)), A.end()); fill 指定した範囲に値を代入してくれる．
+vector&amp;lt;int&amp;gt; A(5); fill(all(A),10); reverse 反転される．
+vector&amp;lt;int&amp;gt; A={1,2,3,4,5}; reverse(all(A)); reverse_copyはコピー先が反転する．
+vector&amp;lt;int&amp;gt; A={1,2,3,4,5}; vector&amp;lt;int&amp;gt; B; reverse_copy(all(A),back_inserter(B)); 比較関数 sort ラムダ式が便利．例はinfo構造体のtimeメンバの昇順で並び替えをしている．
+vector&amp;lt;info&amp;gt; A={{4,1},{3,2},{1,3},{3,4}}; sort(all(A),[](info&amp;amp;l,info&amp;amp;r){return l.time&amp;lt;r.time;}); for(info &amp;amp;a:A){  cout&amp;lt;&amp;lt;a.pos&amp;lt;&amp;lt;&amp;#34; &amp;#34;&amp;lt;&amp;lt;a.time&amp;lt;&amp;lt;endl; } /* 4 1 3 2 1 3 3 4 */ priority_queue ラムダ式を使うのは，functionを経由するらしい． また，priority_queueのtop()メソッドは，比較関数を使って並び替えたときに，一番後ろにくる値が返る．
+priority_queue&amp;lt;info,vector&amp;lt;info&amp;gt;,function&amp;lt;bool(info&amp;amp;,info&amp;amp;)&amp;gt;&amp;gt; qu([](info&amp;amp;l,info&amp;amp;r){return l.time&amp;lt;r.time;}); qu.push(info{4,1}); qu.push(info{3,2}); qu.push(info{1,3}); qu.push(info{3,4}); while(!qu.empty()){  info a = qu.</description>
+    </item>
+    
+    <item>
       <title>TSG lIVE! 8 CTFに参加しました</title>
       <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/tsg8/all/</link>
       <pubDate>Sat, 14 May 2022 14:49:48 +0900</pubDate>
