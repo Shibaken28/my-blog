@@ -17,7 +17,7 @@
       
       <guid>https://shibaken28.github.io/my-blog/post/kyopro/wa/</guid>
       <description>競プロメインです．
-C,C++など 前提  コンパイルするファイルが間違っている 実行するファイルが間違っている コンパイルに失敗し，前回コンパイル成功時のファイルを実行している  コンパイルできない  ヘッダがない  人のコードパクってきたときにfuncional.hがなかった   using namespaceがない 変数名とdefineの重複 vector&amp;lt;vector&amp;lt;long&amp;gt;&amp;gt; A(N,vector&amp;lt;int&amp;gt;(0))みたいに型が一致していない &amp;lt;Templete T&amp;gt;の書き忘れ  コーナーケース  N=1,K=0などの極端な値 A=Bのとき 同じクエリが複数回来るかもしれない 自己ループ，同じ辺 0の0乗,0の階乗の定義  実行が終わらない  入力を受け取りすぎている  クエリの数Qと要素数Nが混同してしまう   n重for文でインクリメントする変数を間違える n重for文で変数名が重複 計算量が多い  setに要素を大量に入れている可能性    セグフォ  cinを忘れている 二項係数ライブラリとかの前計算した配列の範囲外参照 文字列の操作中に空文字が登場する 0,1-indexedの混同  その他ハマり modを正しく取れていない  modを取ってない mod(法)の値が間違っている(998244353,1e9+7) modの取り方を間違っている  法が素数でない，逆元が存在しない mod 3とかでの二項係数はルーカスの定理を使う   modを取りながら累積和したときに負の数がでる  (A[r]-A[l-1]+mod)%modみたいな配慮   最後にマイナス1などをしている(0のときに-1が出力されてしまう)  未分類  改行(flush)しないと標準出力にでてこない cin&amp;gt;&amp;gt;a,b;みたいなことをしている  エラーが出ないことがあるのでハマりやすい   switch文でbreak忘れ make cleanを試す 型のパース，intをlongの計算にそのまま突っ込むのは良くない コンストラクタの名前を間違えている 閉区間，半開区間などの違い  累積和で区間和を出す場合に注意   setやmapでstd::lower_boundなどは使えない  メソッドとして用意されている   01ナップザックで昇順にdpを回してしまった  それは個数制限なし   bool型をint型だと思って  bool値に2以上を入れてもサイレントに1になる   ソート後の配列をソート前の状態として扱ってしまった 格子点とグリッドマス目の関係  角の座標の扱い   不等式における累乗の注意  偶数乗した場合負の数が正になる   ビットシフト演算子の計算順序  四則演算のほうが早い(1&amp;lt;&amp;lt;2+2は1&amp;lt;&amp;lt;4で16になる)    (La)TeX  コンパイル時にできるファイルを一旦削除する _などの文字はエスケープしてあげる  関数名，変数名にありがち    </description>
+C,C++など 前提  コンパイルするファイルが間違っている 実行するファイルが間違っている コンパイルに失敗し，前回コンパイル成功時のファイルを実行している  コンパイルできない  ヘッダがない  人のコードパクってきたときにfuncionalヘッダがなかった   using namespaceがない 変数名とdefineの重複 vector&amp;lt;vector&amp;lt;long&amp;gt;&amp;gt; A(N,vector&amp;lt;int&amp;gt;(0))みたいに型が一致していない &amp;lt;Templete T&amp;gt;の書き忘れ  コーナーケース  N=1,K=0などの極端な値 A=Bのとき 同じクエリが複数回来るかもしれない 自己ループ，同じ辺 0の0乗,0の階乗の定義  実行が終わらない  入力を受け取りすぎている  クエリの数Qと要素数Nが混同してしまう   n重for文でインクリメントする変数を間違える n重for文で変数名が重複 計算量が多い  setに要素を大量に入れている可能性    セグフォ  cinを忘れている 二項係数ライブラリとかの前計算した配列の範囲外参照 文字列の操作中に空文字が登場する 0,1-indexedの混同  その他ハマり modを正しく取れていない  modを取ってない mod(法)の値が間違っている(998244353,1e9+7) modの取り方を間違っている  法が素数でない，逆元が存在しない mod 3とかでの二項係数はルーカスの定理を使う   modを取りながら累積和したときに負の数がでる  (A[r]-A[l-1]+mod)%modみたいな配慮   最後にマイナス1などをしている(0のときに-1が出力されてしまう)  未分類  改行(flush)しないと標準出力にでてこない cin&amp;gt;&amp;gt;a,b;みたいなことをしている  エラーが出ないことがあるのでハマりやすい   switch文でbreak忘れ make cleanを試す 型のパース，intをlongの計算にそのまま突っ込むのは良くない 調和級数の計算量勘違い コンストラクタの名前を間違えている 閉区間，半開区間などの違い  累積和で区間和を出す場合に注意   setやmapでstd::lower_boundなどは使えない  メソッドとして用意されている   01ナップザックで昇順にdpを回してしまった  それは個数制限なし   bool型をint型だと思って  bool値に2以上を入れてもサイレントに1になる   ソート後の配列をソート前の状態として扱ってしまった 格子点とグリッドマス目の関係  角の座標の扱い   不等式における累乗の注意  偶数乗した場合負の数が正になる   ビットシフト演算子の計算順序  四則演算のほうが早い(1&amp;lt;&amp;lt;2+2は1&amp;lt;&amp;lt;4で16になる)   long型リテラルにしわすれてオーバーフロー  1&amp;lt;&amp;lt;40はオーバーフローする．1L&amp;lt;&amp;lt;40が正しい．    (La)TeX  コンパイル時にできるファイルを一旦削除する _などの文字はエスケープしてあげる  関数名，変数名にありがち    </description>
     </item>
     
     <item>
@@ -26,14 +26,13 @@ C,C++など 前提  コンパイルするファイルが間違っている 実�
       <pubDate>Sun, 22 May 2022 03:00:38 +0900</pubDate>
       
       <guid>https://shibaken28.github.io/my-blog/post/kyopro/tec/</guid>
-      <description>注意  内容の正しさの保証はしません． その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．  define #define all(a) a.begin(),a.end() sort(A.begin(),A.end())やlower_boud(A.begin(),A.end(),x)を， sort(all(A))，lower(all(A),x)のように短縮できる．
-vector unique 次のコードで重複を削除する．uniqueは，重複した要素を配列の後ろに追いやるので，その部分をeraseで削除する．sortする必要がある．計算量は$O(要素数)$
-vector&amp;lt;int&amp;gt; A= {3,1,4,1,5}; sort(all(A)); A.erase(unique(all(A)), A.end()); fill 指定した範囲に値を代入してくれる．
-vector&amp;lt;int&amp;gt; A(5); fill(all(A),10); reverse 反転される．
-vector&amp;lt;int&amp;gt; A={1,2,3,4,5}; reverse(all(A)); reverse_copyはコピー先が反転する．
-vector&amp;lt;int&amp;gt; A={1,2,3,4,5}; vector&amp;lt;int&amp;gt; B; reverse_copy(all(A),back_inserter(B)); 比較関数 sort ラムダ式が便利．例はinfo構造体のtimeメンバの昇順で並び替えをしている．
-vector&amp;lt;info&amp;gt; A={{4,1},{3,2},{1,3},{3,4}}; sort(all(A),[](info&amp;amp;l,info&amp;amp;r){return l.time&amp;lt;r.time;}); for(info &amp;amp;a:A){  cout&amp;lt;&amp;lt;a.pos&amp;lt;&amp;lt;&amp;#34; &amp;#34;&amp;lt;&amp;lt;a.time&amp;lt;&amp;lt;endl; } /* 4 1 3 2 1 3 3 4 */ priority_queue ラムダ式を使うのは，functionを経由するらしい． また，priority_queueのtop()メソッドは，比較関数を使って並び替えたときに，一番後ろにくる値が返る．
-priority_queue&amp;lt;info,vector&amp;lt;info&amp;gt;,function&amp;lt;bool(info&amp;amp;,info&amp;amp;)&amp;gt;&amp;gt; qu([](info&amp;amp;l,info&amp;amp;r){return l.time&amp;lt;r.time;}); qu.push(info{4,1}); qu.push(info{3,2}); qu.push(info{1,3}); qu.push(info{3,4}); while(!qu.empty()){  info a = qu.</description>
+      <description>注意  内容の正しさの保証はしません． その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．  実装 define #define all(a) a.begin(),a.end() sort(A.begin(),A.end())やlower_boud(A.begin(),A.end(),x)を， sort(all(A))，lower(all(A),x)のように短縮できる．
+auto 型を推定してくれる．例えば，次のコードで，vectorのXを用意したが，double型に変えたくなったとする．
+ vector&amp;lt;int&amp;gt; X(10);  for(int a:X){  cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;  } すると，vectorのintとfor文のintの2つをdoubleに書き換えないといけなくなってしまう．そこで，for文のintをautoにしておくことでvectorの型さえ決めとけば楽になる．
+ vector&amp;lt;int&amp;gt; X(10);  for(auto a:X){  cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;  } usingという手もある
+ using val = int;  vector&amp;lt;val&amp;gt; X(10);  for(val a:X){  cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;  } その他，型名がよくわかないもの(イテレータ，関数など)に使うと便利である．例えば，次を書くのはしんどいので
+ vector&amp;lt;int&amp;gt; X(10);  _Vector_iterator&amp;lt;_Vector_val&amp;lt;_Simple_types&amp;lt;int&amp;gt;&amp;gt;&amp;gt; a = X.begin(); autoを使う．
+ vector&amp;lt;int&amp;gt; X(10);  auto a = X.begin(); 関数について 値渡し 引数の中身がコピーされるため，関数内で値をいじっても元の値は変わらない．</description>
     </item>
     
     <item>
