@@ -4,10 +4,11 @@ date: 2022-05-22T03:00:38+09:00
 draft: false
 ---
 
-### 注意
+## 注意
 - 内容の正しさの保証はしません．
 - その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．
 
+## 実装
 ### define
 ```cpp
 #define all(a) a.begin(),a.end()
@@ -110,7 +111,7 @@ int main(void){
 ```
 
 #### ラムダ式
-関数を簡単に表現できる
+関数を簡単に表現できる．
 ```cpp
     auto func = [](int a,int b,int x){return a*x+b;};
     cout<<func(10,5,2)<<endl;
@@ -144,6 +145,19 @@ vector<int> A={1,2,3,4,5};
 vector<int> B;
 reverse_copy(all(A),back_inserter(B));
 ```
+#### count_if
+条件を満たす要素を数える．
+```cpp
+vector<int> A={1,2,2,3,3,3,4,4,4,4};
+cout<<count_if(all(A),[](int &a){return a==3;})<<endl;
+//3
+
+string S="coffee";
+auto findE = [](char&c){return c=='e';};
+cout<<count_if(all(S),findE)<<endl;
+//2
+```
+
 
 ### 比較関数
 #### sort
@@ -291,6 +305,35 @@ for(int i=0;i<=5;i++){
 #### mapやsetに対して
 mapとsetには，`lower_bound,upper_bound`メソッドがそれぞれ用意されているので，これを使う(間違えて`std::lower_bound`を使うと，正しい値は得られない．なぜなら，`begin`から`end`までのイテレータが連続でないからである．)
 
+### ビット演算
+#### 2の冪数
+2の`n`乗が欲しいとき，`1<<n`で実現できる．オーバーフローに注意．
+```cpp
+    cout<<(1<<30)<<endl;
+    //1073741824,2の30乗
+```
+#### 2の冪数判定
+次の論理式で2の冪数($2^k,(kは非負整数)$で表すことができる)かを判定できる．
+```cpp
+bool is2exp(long n){
+    return (n&(n-1))==0;
+}
+
+int main(void){
+    //false
+    cout<<is2exp(10)<<endl;
+    cout<<is2exp(98)<<endl;
+    cout<<is2exp(65)<<endl;
+
+    //true
+    cout<<is2exp(32)<<endl;
+    cout<<is2exp(64)<<endl;
+    cout<<is2exp(2)<<endl;
+    cout<<is2exp(1)<<endl;
+    cout<<is2exp(0)<<endl;
+}
+```
+
 
 ### 未分類
 #### Makefile
@@ -332,7 +375,6 @@ do{
 	A.push_back(array);
 }while(next_permutation(array.begin(),array.end()));
 ```
-
 #### clamp
 範囲に値を収めてくれる．
 ```cpp
@@ -378,5 +420,47 @@ string atob(string N,long a,long b){
 }
 ```
 
+## 考え方
+### 余事象
+- 包除原理
+### 最短経路問題+α
+曲がる回数を少なくする，一定回数グラフで頂点間の高速移動ができる，など．
+拡張BFS，拡張ダイクストラを考える．
+
+### 計算量
+#### ある値が極端に小さい
+その値を用いて全探索できないか
+#### $N=10$
+$O(N!)$の順列全探索
+#### $N=20$
+$O(2^N)$でビット全探索
+#### $N=40$
+半分列挙
+#### $N=100$
+$O(N^4),O(N^3\log X),O(N^3)$，区間dpなど
+#### $N=1000$
+$O(N^2\log X),O(N^2)$，dpなど
+#### $N=2\times 10^5$
+$O(N),O(N\log N)$
+#### $N=10^9,10^18$
+$O(\log N),O(1)$
+ダブリング，最大公約数，桁dpなど
 
 
+### 定数倍高速化
+- 素因数分解をたくさんする場合，先に素数列挙しておく
+  - これは定数倍高速化というのか微妙
+- dpで，bool値を取っている場合，long型にして64倍高速化が可能かも
+
+### 円環の構造
+数列などの最後と最初を連続しているとみなすときに(人が円の形に並んでいる，などのシュチュエーション)，同じ数列を2つくっつけると楽である．
+
+### 期待値，確率
+- 独立に考えられないか
+
+### ビット演算
+- ビットごと独立に考えられる
+
+### ゲーム
+- Grundy数計算
+- Nim
