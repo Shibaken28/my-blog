@@ -14,7 +14,7 @@ draft: false
 
 ## コンパイルできない
 - ヘッダがない
-    - 人のコードパクってきたときに`funcional.h`がなかった
+    - 人のコードパクってきたときに`funcional`ヘッダがなかった
 - `using namespace`がない
 - 変数名と`define`の重複
 - `vector<vector<long>> A(N,vector<int>(0))`みたいに型が一致していない

@@ -14,6 +14,108 @@ draft: false
 ```
 `sort(A.begin(),A.end())`や`lower_boud(A.begin(),A.end(),x)`を，
 `sort(all(A))`，`lower(all(A),x)`のように短縮できる．
+### auto
+型を推定してくれる．例えば，次のコードで，`vector`の`X`を用意したが，`double`型に変えたくなったとする．
+```cpp 
+    vector<int> X(10);
+    for(int a:X){
+        cout<<a<<endl;
+    }
+```
+すると，`vector`の`int`と`for`文の`int`の2つを`double`に書き換えないといけなくなってしまう．そこで，`for`文の`int`を`auto`にしておくことで`vector`の型さえ決めとけば楽になる．
+```cpp
+    vector<int> X(10);
+    for(auto a:X){
+        cout<<a<<endl;
+    }
+```
+`using`という手もある
+```cpp
+    using val = int;
+    vector<val> X(10);
+    for(val a:X){
+        cout<<a<<endl;
+    }
+```
+その他，型名がよくわかないもの(イテレータ，関数など)に使うと便利である．例えば，次を書くのはしんどいので
+```cpp
+    vector<int> X(10);
+    _Vector_iterator<_Vector_val<_Simple_types<int>>> a = X.begin();
+```
+`auto`を使う．
+```cpp
+    vector<int> X(10);
+    auto a = X.begin();
+```
+
+
+### 関数について
+#### 値渡し
+引数の中身がコピーされるため，関数内で値をいじっても元の値は変わらない．
+```cpp
+void foo(int a){
+    a = 100;
+}
+
+int main(void){
+    int x = 10;
+    foo(x);
+    cout<<x<<endl;
+}
+```
+
+#### 参照渡し
+直接参照するため，引数をコピーするコストがない．
+次の例では配列の引数を戻り値っぽく使っている．`&`がないと，コピーされた`A`変更が加わるので，結局`main`関数の配列`A`は空っぽのままになってしまう．
+```cpp
+//約数列挙
+void factor(long N,vector<long>&A){
+    A.clear();
+    for(long i=1;i<=N;i++){
+        if(N%i==0){
+            A.push_back(i);
+        }
+    }
+}
+
+int main(void){
+    long N=60;
+    vector<long> A(0);
+    factor(N,A);
+    for(auto&f:A)cout<<f<<" ";
+    //1 2 3 4 5 6 10 12 15 20 30 60 
+}
+```．
+参照渡しするけど，中身を書き換えたくないときは`const`を付ける．安心．
+```cpp
+void foo(const vector<vector<int>>&G){
+    /*
+        Gを改変しない処理
+    */
+}
+```．
+参照渡しの引数に変数でないもの(リテラル表記)を突っ込むとエラーが出る．
+```cpp
+void swapping(int &a,int &b){
+    int t=a;
+    a=b;
+    b=t;
+}
+
+int main(void){
+    int x=5;
+    //リテラル表記だとエラー
+    swapping(3,x);
+}
+```
+
+#### ラムダ式
+関数を簡単に表現できる
+```cpp
+    auto func = [](int a,int b,int x){return a*x+b;};
+    cout<<func(10,5,2)<<endl;
+```
+後述する比較関数や，`count_if`で重宝する．
 
 ### vector
 #### unique
@@ -122,6 +224,12 @@ for(auto&a:A)cout<<a<<" ";
 ```cpp
 map<int,int> A={{1,5},{4,5},{2,3},{8,1}};
 for(auto&a:A)cout<<"{"<<a.first<<","<<a.second<<"} ";
+//{1,5} {2,3} {4,5} {8,1}
+```
+構造体束縛によって次のようなこともできる．
+```cpp
+map<int,int> A={{1,5},{4,5},{2,3},{8,1}};
+for(auto&[key,value]:A)cout<<"{"<<key<<","<<value<<"} ";
 //{1,5} {2,3} {4,5} {8,1}
 ```
 
