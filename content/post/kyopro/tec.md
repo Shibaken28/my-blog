@@ -417,6 +417,7 @@ string atob(string N,long a,long b){
     if(S=="")S="0";
     reverse(all(S));
     return S;
+    
 }
 ```
 
