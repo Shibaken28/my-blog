@@ -86,7 +86,7 @@ int main(void){
     for(auto&f:A)cout<<f<<" ";
     //1 2 3 4 5 6 10 12 15 20 30 60 
 }
-```．
+```
 参照渡しするけど，中身を書き換えたくないときは`const`を付ける．安心．
 ```cpp
 void foo(const vector<vector<int>>&G){
@@ -94,7 +94,7 @@ void foo(const vector<vector<int>>&G){
         Gを改変しない処理
     */
 }
-```．
+```
 参照渡しの引数に変数でないもの(リテラル表記)を突っ込むとエラーが出る．
 ```cpp
 void swapping(int &a,int &b){
@@ -290,6 +290,7 @@ for(int i=0;i<=5;i++){
 #### xの個数を数える
 `lower_bound`と`upper_bound`を合わせて使うと，ある数の個数が得られる．
 具体的には，要素数からx未満の数の個数とxより大きい数の個数を引けば良い．
+
 ```cpp
 vector<int> A={1,1,2,2,2,2,4}; //ソート済みである
 for(int i=0;i<=5;i++){
