@@ -113,8 +113,8 @@ auto 型を推定してくれる．例えば，次のコードで，vectorのX�
   "keywords": [
     
   ],
-  "articleBody": "注意  内容の正しさの保証はしません． その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．  実装 define #define all(a) a.begin(),a.end() sort(A.begin(),A.end())やlower_boud(A.begin(),A.end(),x)を， sort(all(A))，lower(all(A),x)のように短縮できる．\nauto 型を推定してくれる．例えば，次のコードで，vectorのXを用意したが，double型に変えたくなったとする．\n vectorint X(10);  for(int a:X){  coutaendl;  } すると，vectorのintとfor文のintの2つをdoubleに書き換えないといけなくなってしまう．そこで，for文のintをautoにしておくことでvectorの型さえ決めとけば楽になる．\n vectorint X(10);  for(auto a:X){  coutaendl;  } usingという手もある\n using val = int;  vectorval X(10);  for(val a:X){  coutaendl;  } その他，型名がよくわかないもの(イテレータ，関数など)に使うと便利である．例えば，次を書くのはしんどいので\n vectorint X(10);  _Vector_iterator_Vector_val_Simple_typesint a = X.begin(); autoを使う．\n vectorint X(10);  auto a = X.begin(); 関数について 値渡し 引数の中身がコピーされるため，関数内で値をいじっても元の値は変わらない．\nvoid foo(int a){  a = 100; }  int main(void){  int x = 10;  foo(x);  coutxendl; } 参照渡し 直接参照するため，引数をコピーするコストがない． 次の例では配列の引数を戻り値っぽく使っている．\u0026がないと，コピーされたA変更が加わるので，結局main関数の配列Aは空っぽのままになってしまう．\n//約数列挙 void factor(long N,vectorlong\u0026A){  A.clear();  for(long i=1;iN;i++){  if(N%i==0){  A.push_back(i);  }  } }  int main(void){  long N=60;  vectorlong A(0);  factor(N,A);  for(auto\u0026f:A)coutf\" \";  //1 2 3 4 5 6 10 12 15 20 30 60 } 参照渡しするけど，中身を書き換えたくないときはconstを付ける．安心．\nvoid foo(const vectorvectorint\u0026G){  /* Gを改変しない処理 */ } 参照渡しの引数に変数でないもの(リテラル表記)を突っ込むとエラーが出る．\nvoid swapping(int \u0026a,int \u0026b){  int t=a;  a=b;  b=t; }  int main(void){  int x=5;  //リテラル表記だとエラー  swapping(3,x); } ラムダ式 関数を簡単に表現できる．\n auto func = [](int a,int b,int x){return a*x+b;};  coutfunc(10,5,2)endl; 後述する比較関数や，count_ifで重宝する． また，関数を引数や返り値に持つ関数や構造体でも便利(抽象化したセグ木など)．\nコンテナ unique 次のコードで重複を削除する．uniqueは，重複した要素を配列の後ろに追いやるので，その部分をeraseで削除する．sortする必要がある．計算量は$O(要素数)$\nvector A= {3,1,4,1,5}; sort(all(A)); A.erase(unique(all(A)), A.end()); fill 指定した範囲に値を代入してくれる．\nvectorint A(5); fill(all(A),10); reverse 反転される．\nvectorint A={1,2,3,4,5}; reverse(all(A)); reverse_copyはコピー先が反転する．\nvectorint A={1,2,3,4,5}; vectorint B; reverse_copy(all(A),back_inserter(B)); count_if 条件を満たす要素を数える．\nvectorint A={1,2,2,3,3,3,4,4,4,4}; coutcount_if(all(A),[](int \u0026a){return a==3;})endl; //3  string S=\"coffee\"; auto findE = [](char\u0026c){return c=='e';}; coutcount_if(all(S),findE)endl; //2 比較関数 sort ラムダ式が便利．例はinfo構造体のtimeメンバの昇順で並び替えをしている．\nvectorinfo A={{4,1},{3,2},{1,3},{3,4}}; sort(all(A),[](info\u0026l,info\u0026r){return l.timer.time;}); for(info \u0026a:A){  couta.pos\" \"a.timeendl; } /* 4 1 3 2 1 3 3 4 */ priority_queue ラムダ式を使うのは，functionを経由するらしい． また，priority_queueのtop()メソッドは，比較関数を使って並び替えたときに，一番後ろにくる値が返る．\npriority_queueinfo,vectorinfo,functionbool(info\u0026,info\u0026) qu([](info\u0026l,info\u0026r){return l.timer.time;}); qu.push(info{4,1}); qu.push(info{3,2}); qu.push(info{1,3}); qu.push(info{3,4}); while(!qu.empty()){  info a = qu.top();qu.pop();  couta.pos\" \"a.timeendl; } /* 3 4 1 3 3 2 4 1 */ 直接ラムダ式を突っ込むのが嫌な場合は，decltypeを使う．\nauto compare = [](info\u0026l,info\u0026r){return l.timer.time;}; priority_queueinfo,vectorinfo,decltype(compare) qu{compare}; 小数関連 表示　 setprecisionや，c言語にもあるprintfが使える．\ndouble r = sqrt(2); printf(\"%.10lf\\n\",r); coutfixedsetprecision(10); coutrendl; //どちらも1.4142135624 切り上げ，切り捨て，四捨五入 coutfloor(1.5)endl;//切り捨て，床関数 1 coutceil(1.5)endl;//切り上げ，天井関数 2 coutround(1.5)endl;//小数点以下を四捨五入 2 coutround(1.48)endl;//小数点以下を四捨五入 1 範囲for文 vectorやsetなどの要素を列挙する．他の言語のeachfor文にあたる． 汎用性が高い．\nvector vectorint A={3,1,4,1,5,9,2,6,5,3,5}; for(auto\u0026a:A)couta\" \"; //3 1 4 1 5 9 2 6 5 3 5 set setint A={5,1,3,2,4}; for(auto\u0026a:A)couta\" \"; //1 2 3 4 5 map mapはpair型で返る．\nmapint,int A={{1,5},{4,5},{2,3},{8,1}}; for(auto\u0026a:A)cout\"{\"a.first\",\"a.second\"} \"; //{1,5} {2,3} {4,5} {8,1} 構造体束縛によって次のようなこともできる．\nmapint,int A={{1,5},{4,5},{2,3},{8,1}}; for(auto\u0026[key,value]:A)cout\"{\"key\",\"value\"} \"; //{1,5} {2,3} {4,5} {8,1} 二分探索 範囲が含まれていたり含まれていなかったり，ややこしいのでコピペでできるように整理しておきたい．\nlower_bound 指定した数以上の数うち，最も左にある数のイテレータを返す． 指定した数以上が存在しない場合，.end()のイテレータが返るため，そのまま参照する際には注意．\nvectorint A={1,1,2,4}; //ソート済みである for(int i=0;i5;i++){  auto a = lower_bound(all(A),i);  if(a==A.end()){  cout\"Aには \"i\" 以上の数は含まれません\"endl;  }else{  cout\"Aに含まれる \"i\" 以上の最小の数 \"aendl;  cout\"そのインデックス \"a-A.begin()endl;  }  cout\"Aに含まれる \"i\" 以上の数の個数 \"A.end()-aendl;  cout\"Aに含まれる \"i\" 未満の数の個数 \"A.size()-(A.end()-a)endl;  coutendl; } upper_bound 指定した数より大きい数のうち，最も左にある数のイテレータを返す． これまた，存在にない場合の処理に注意．\nvectorint A={1,1,2,4}; //ソート済みである for(int i=0;i5;i++){  auto a = upper_bound(all(A),i);  if(a==A.end()){  cout\"Aには \"i\" より大きい数は含まれません\"endl;  }else{  cout\"Aに含まれる \"i\" より大きいの最小の数 \"aendl;  cout\"そのインデックス \"a-A.begin()endl;  }  cout\"Aに含まれる \"i\" より大きいの数の個数 \"A.end()-aendl;  cout\"Aに含まれる \"i\" 以下の数の個数 \"A.size()-(A.end()-a)endl;  coutendl; } xの個数を数える lower_boundとupper_boundを合わせて使うと，ある数の個数が得られる． 具体的には，要素数からx未満の数の個数とxより大きい数の個数を引けば良い．\nvectorint A={1,1,2,2,2,2,4}; //ソート済みである for(int i=0;i5;i++){  auto u = upper_bound(all(A),i);  auto l = lower_bound(all(A),i);  int a = A.end()-u;  int b = A.size()-(A.end()-l);  //cout //cout cout\"Aに含まれる \"i\" の個数 \"A.size()-a-bendl; } mapやsetに対して mapとsetには，lower_bound,upper_boundメソッドがそれぞれ用意されているので，これを使う(間違えてstd::lower_boundを使うと，正しい値は得られない．なぜなら，beginからendまでのイテレータが連続でないからである．)\n$x$以下の値で大きい方から$k$番目みたいな問題 set,map,multisetでは，イテレータのインクリメント，デクリメントで次に大きい数，小さい数を得られる． イテレータがコンテナの範囲外にあるとセグフォするので注意しなければならない．\n https://atcoder.jp/contests/abc241/tasks/abc241_d  ビット演算 2の冪数 2のn乗が欲しいとき，1で実現できる．オーバーフローに注意．\n cout(130)endl;  //1073741824,2の30乗 2の冪数判定 次の論理式で2の冪数($2^k,(kは非負整数)$で表すことができる)かを判定できる．\nbool is2exp(long n){  return (n\u0026(n-1))==0; }  int main(void){  //false  coutis2exp(10)endl;  coutis2exp(98)endl;  coutis2exp(65)endl;   //true  coutis2exp(32)endl;  coutis2exp(64)endl;  coutis2exp(2)endl;  coutis2exp(1)endl;  coutis2exp(0)endl; } 未分類 Makefile c++17の機能を使いたいので，Makefileでオプションを付けるように指定する．\n#Makefile CC=g++ CFLAGS=-Wall -std=c++17 .SUFFIXES = .cpp objs:=$(wildcard *.cpp) targets:=$(objs:.cpp= ) .PHONY:all all: $(targets) .cpp: $(CC) $(CFLAGS) -o $@ $周囲4マスを見る 変化量を配列にする．周囲8マスにも応用できる．\nint x=2,y=2; int dx[4]={1,-1,0,0}; int dy[4]={0,0,1,-1}; for(int i=0;i4;i++){  coutx+dx[i]\" \"y+dy[i]endl; } swap 型が同じであれば何でもswapしてくれる．$O(1)$．\nvectorint A(100000,10),B(100000,20); rep(i,1000000)swap(A,B); 順列列挙 vectorint array(N); for(int i=0;iN;i++)array[i]=i; do{ \tA.push_back(array); }while(next_permutation(array.begin(),array.end())); clamp 範囲に値を収めてくれる．\ncoutclamp(-5,0,100)endl; //0 coutclamp(104,0,100)endl;//100 coutclamp(4,0,100)endl;//4 hypot ベクトルの大きさを求める．2次元と3次元で可能．\ncouthypot(1,1)endl; //1.41421 couthypot(1,1,1)endl; //1.73205 部分集合全列挙 int i=0b10001010; cout(static_caststd::bitset8(i))\" の部分集合\"endl; for(int T=i; ; T=(T-1)\u0026i) {  if(T==0)break;  cout(static_caststd::bitset8(T))endl; } 基数変換 a進数からb進数に変換する．b10だと出力が変になる．\nstring atob(string N,long a,long b){  long x=1;  long R=0;//10進数  for(int i=N.size()-1;i=0;i--){  R+=(N[i]-'0')*x;  x*=a;  }  string S=\"\";  while(R0){  S.push_back('0'+R%b);  R/=b;  }  if(S==\"\")S=\"0\";  reverse(all(S));  return S;  } 考え方 余事象  包除原理  最短経路問題+α 曲がる回数を少なくする，一定回数グラフで頂点間の高速移動ができる，など． 拡張BFS，拡張ダイクストラを考える．\n計算量 ある値が極端に小さい その値を用いて全探索できないか\n$N=10$ $O(N!)$の順列全探索\n$N=20$ $O(2^N)$でビット全探索\n$N=40$ 半分列挙\n$N=100$ $O(N^4),O(N^3\\log X),O(N^3)$，区間dpなど\n$N=1000$ $O(N^2\\log X),O(N^2)$，dpなど\n$N=2\\times 10^5$ $O(N),O(N\\log N)$\n$N=10^9,10^18$ $O(\\log N),O(1)$ ダブリング，最大公約数，桁dpなど\n定数倍高速化  素因数分解をたくさんする場合，先に素数列挙しておく  これは定数倍高速化というのか微妙   dpで，bool値を取っている場合，long型にして64倍高速化が可能かも  円環の構造 数列などの最後と最初を連続しているとみなすときに(人が円の形に並んでいる，などのシュチュエーション)，同じ数列を2つくっつけると楽である．\n期待値，確率  独立に考えられないか  ビット演算  ビットごと独立に考えられる  ゲーム  Grundy数計算 Nim  ",
-  "wordCount" : "594",
+  "articleBody": "注意  内容の正しさの保証はしません． その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．  実装 define #define all(a) a.begin(),a.end() sort(A.begin(),A.end())やlower_boud(A.begin(),A.end(),x)を， sort(all(A))，lower(all(A),x)のように短縮できる．\nauto 型を推定してくれる．例えば，次のコードで，vectorのXを用意したが，double型に変えたくなったとする．\n vectorint X(10);  for(int a:X){  coutaendl;  } すると，vectorのintとfor文のintの2つをdoubleに書き換えないといけなくなってしまう．そこで，for文のintをautoにしておくことでvectorの型さえ決めとけば楽になる．\n vectorint X(10);  for(auto a:X){  coutaendl;  } usingという手もある\n using val = int;  vectorval X(10);  for(val a:X){  coutaendl;  } その他，型名がよくわかないもの(イテレータ，関数など)に使うと便利である．例えば，次を書くのはしんどいので\n vectorint X(10);  _Vector_iterator_Vector_val_Simple_typesint a = X.begin(); autoを使う．\n vectorint X(10);  auto a = X.begin(); 関数について 値渡し 引数の中身がコピーされるため，関数内で値をいじっても元の値は変わらない．\nvoid foo(int a){  a = 100; }  int main(void){  int x = 10;  foo(x);  coutxendl; } 参照渡し 直接参照するため，引数をコピーするコストがない． 次の例では配列の引数を戻り値っぽく使っている．\u0026がないと，コピーされたA変更が加わるので，結局main関数の配列Aは空っぽのままになってしまう．\n//約数列挙 void factor(long N,vectorlong\u0026A){  A.clear();  for(long i=1;iN;i++){  if(N%i==0){  A.push_back(i);  }  } }  int main(void){  long N=60;  vectorlong A(0);  factor(N,A);  for(auto\u0026f:A)coutf\" \";  //1 2 3 4 5 6 10 12 15 20 30 60 } 参照渡しするけど，中身を書き換えたくないときはconstを付ける．安心．\nvoid foo(const vectorvectorint\u0026G){  /* Gを改変しない処理 */ } 参照渡しの引数に変数でないもの(リテラル表記)を突っ込むとエラーが出る．\nvoid swapping(int \u0026a,int \u0026b){  int t=a;  a=b;  b=t; }  int main(void){  int x=5;  //リテラル表記だとエラー  swapping(3,x); } ラムダ式 関数を簡単に表現できる．\n auto func = [](int a,int b,int x){return a*x+b;};  coutfunc(10,5,2)endl; 後述する比較関数や，count_ifで重宝する． また，関数を引数や返り値に持つ関数や構造体でも便利(抽象化したセグ木など)．\nコンテナ unique 次のコードで重複を削除する．uniqueは，重複した要素を配列の後ろに追いやるので，その部分をeraseで削除する．sortする必要がある．計算量は$O(要素数)$\nvector A= {3,1,4,1,5}; sort(all(A)); A.erase(unique(all(A)), A.end()); fill 指定した範囲に値を代入してくれる．\nvectorint A(5); fill(all(A),10); reverse 反転される．\nvectorint A={1,2,3,4,5}; reverse(all(A)); reverse_copyはコピー先が反転する．\nvectorint A={1,2,3,4,5}; vectorint B; reverse_copy(all(A),back_inserter(B)); count_if 条件を満たす要素を数える．\nvectorint A={1,2,2,3,3,3,4,4,4,4}; coutcount_if(all(A),[](int \u0026a){return a==3;})endl; //3  string S=\"coffee\"; auto findE = [](char\u0026c){return c=='e';}; coutcount_if(all(S),findE)endl; //2 比較関数 sort ラムダ式が便利．例はinfo構造体のtimeメンバの昇順で並び替えをしている．\nvectorinfo A={{4,1},{3,2},{1,3},{3,4}}; sort(all(A),[](info\u0026l,info\u0026r){return l.timer.time;}); for(info \u0026a:A){  couta.pos\" \"a.timeendl; } /* 4 1 3 2 1 3 3 4 */ priority_queue ラムダ式を使うのは，functionを経由するらしい． また，priority_queueのtop()メソッドは，比較関数を使って並び替えたときに，一番後ろにくる値が返る．\npriority_queueinfo,vectorinfo,functionbool(info\u0026,info\u0026) qu([](info\u0026l,info\u0026r){return l.timer.time;}); qu.push(info{4,1}); qu.push(info{3,2}); qu.push(info{1,3}); qu.push(info{3,4}); while(!qu.empty()){  info a = qu.top();qu.pop();  couta.pos\" \"a.timeendl; } /* 3 4 1 3 3 2 4 1 */ 直接ラムダ式を突っ込むのが嫌な場合は，decltypeを使う．\nauto compare = [](info\u0026l,info\u0026r){return l.timer.time;}; priority_queueinfo,vectorinfo,decltype(compare) qu{compare}; 小数関連 表示　 setprecisionや，c言語にもあるprintfが使える．\ndouble r = sqrt(2); printf(\"%.10lf\\n\",r); coutfixedsetprecision(10); coutrendl; //どちらも1.4142135624 切り上げ，切り捨て，四捨五入 coutfloor(1.5)endl;//切り捨て，床関数 1 coutceil(1.5)endl;//切り上げ，天井関数 2 coutround(1.5)endl;//小数点以下を四捨五入 2 coutround(1.48)endl;//小数点以下を四捨五入 1 範囲for文 vectorやsetなどの要素を列挙する．他の言語のeachfor文にあたる． 汎用性が高い．\nvector vectorint A={3,1,4,1,5,9,2,6,5,3,5}; for(auto\u0026a:A)couta\" \"; //3 1 4 1 5 9 2 6 5 3 5 set setint A={5,1,3,2,4}; for(auto\u0026a:A)couta\" \"; //1 2 3 4 5 map mapはpair型で返る．\nmapint,int A={{1,5},{4,5},{2,3},{8,1}}; for(auto\u0026a:A)cout\"{\"a.first\",\"a.second\"} \"; //{1,5} {2,3} {4,5} {8,1} 構造体束縛によって次のようなこともできる．\nmapint,int A={{1,5},{4,5},{2,3},{8,1}}; for(auto\u0026[key,value]:A)cout\"{\"key\",\"value\"} \"; //{1,5} {2,3} {4,5} {8,1} 二分探索 範囲が含まれていたり含まれていなかったり，ややこしいのでコピペでできるように整理しておきたい．\nlower_bound 指定した数以上の数うち，最も左にある数のイテレータを返す． 指定した数以上が存在しない場合，.end()のイテレータが返るため，そのまま参照する際には注意．\nvectorint A={1,1,2,4}; //ソート済みである for(int i=0;i5;i++){  auto a = lower_bound(all(A),i);  if(a==A.end()){  cout\"Aには \"i\" 以上の数は含まれません\"endl;  }else{  cout\"Aに含まれる \"i\" 以上の最小の数 \"aendl;  cout\"そのインデックス \"a-A.begin()endl;  }  cout\"Aに含まれる \"i\" 以上の数の個数 \"A.end()-aendl;  cout\"Aに含まれる \"i\" 未満の数の個数 \"A.size()-(A.end()-a)endl;  coutendl; } upper_bound 指定した数より大きい数のうち，最も左にある数のイテレータを返す． これまた，存在にない場合の処理に注意．\nvectorint A={1,1,2,4}; //ソート済みである for(int i=0;i5;i++){  auto a = upper_bound(all(A),i);  if(a==A.end()){  cout\"Aには \"i\" より大きい数は含まれません\"endl;  }else{  cout\"Aに含まれる \"i\" より大きいの最小の数 \"aendl;  cout\"そのインデックス \"a-A.begin()endl;  }  cout\"Aに含まれる \"i\" より大きいの数の個数 \"A.end()-aendl;  cout\"Aに含まれる \"i\" 以下の数の個数 \"A.size()-(A.end()-a)endl;  coutendl; } xの個数を数える lower_boundとupper_boundを合わせて使うと，ある数の個数が得られる． 具体的には，要素数からx未満の数の個数とxより大きい数の個数を引けば良い．\nvectorint A={1,1,2,2,2,2,4}; //ソート済みである for(int i=0;i5;i++){  auto u = upper_bound(all(A),i);  auto l = lower_bound(all(A),i);  int a = A.end()-u;  int b = A.size()-(A.end()-l);  //cout //cout cout\"Aに含まれる \"i\" の個数 \"A.size()-a-bendl; } mapやsetに対して mapとsetには，lower_bound,upper_boundメソッドがそれぞれ用意されているので，これを使う(間違えてstd::lower_boundを使うと，正しい値は得られない．なぜなら，beginからendまでのイテレータが連続でないからである．)\n$x$以下の値で大きい方から$k$番目みたいな問題 set,map,multisetでは，イテレータのインクリメント，デクリメントで次に大きい数，小さい数を得られる． イテレータがコンテナの範囲外にあるとセグフォするので注意しなければならない．\n https://atcoder.jp/contests/abc241/tasks/abc241_d  ビット演算 2の冪数 2のn乗が欲しいとき，1で実現できる．オーバーフローに注意．\n cout(130)endl;  //1073741824,2の30乗 2の冪数判定 次の論理式で2の冪数($2^k,(kは非負整数)$で表すことができる)かを判定できる．\nbool is2exp(long n){  return (n\u0026(n-1))==0; }  int main(void){  //false  coutis2exp(10)endl;  coutis2exp(98)endl;  coutis2exp(65)endl;   //true  coutis2exp(32)endl;  coutis2exp(64)endl;  coutis2exp(2)endl;  coutis2exp(1)endl;  coutis2exp(0)endl; } 未分類 Makefile c++17の機能を使いたいので，Makefileでオプションを付けるように指定する．\n#Makefile CC=g++ CFLAGS=-Wall -std=c++17 .SUFFIXES = .cpp objs:=$(wildcard *.cpp) targets:=$(objs:.cpp= ) .PHONY:all all: $(targets) .cpp: $(CC) $(CFLAGS) -o $@ $周囲4マスを見る 変化量を配列にする．周囲8マスにも応用できる．\nint x=2,y=2; int dx[4]={1,-1,0,0}; int dy[4]={0,0,1,-1}; for(int i=0;i4;i++){  coutx+dx[i]\" \"y+dy[i]endl; } swap 型が同じであれば何でもswapしてくれる．$O(1)$．\nvectorint A(100000,10),B(100000,20); rep(i,1000000)swap(A,B); 順列列挙 vectorint array(N); for(int i=0;iN;i++)array[i]=i; do{ \tA.push_back(array); }while(next_permutation(array.begin(),array.end())); clamp 範囲に値を収めてくれる．\ncoutclamp(-5,0,100)endl; //0 coutclamp(104,0,100)endl;//100 coutclamp(4,0,100)endl;//4 hypot ベクトルの大きさを求める．2次元と3次元で可能．\ncouthypot(1,1)endl; //1.41421 couthypot(1,1,1)endl; //1.73205 部分集合全列挙 int i=0b10001010; cout(static_caststd::bitset8(i))\" の部分集合\"endl; for(int T=i; ; T=(T-1)\u0026i) {  if(T==0)break;  cout(static_caststd::bitset8(T))endl; } 基数変換 a進数からb進数に変換する．b10だと出力が変になる．\nstring atob(string N,long a,long b){  long x=1;  long R=0;//10進数  for(int i=N.size()-1;i=0;i--){  R+=(N[i]-'0')*x;  x*=a;  }  string S=\"\";  while(R0){  S.push_back('0'+R%b);  R/=b;  }  if(S==\"\")S=\"0\";  reverse(all(S));  return S;  } 考え方 余事象  包除原理  最短経路問題+α 曲がる回数を少なくする，一定回数グラフで頂点間の高速移動ができる，など． 拡張BFS，拡張ダイクストラを考える．\n計算量 ある値が極端に小さい その値を用いて全探索できないか\n$N=10$ $O(N!)$の順列全探索\n$N=20$ $O(2^N)$でビット全探索\n$N=40$ 半分列挙\n$N=100$ $O(N^4),O(N^3\\log X),O(N^3)$，区間dp，行列累乗など\n$N=1000$ $O(N^2\\log X),O(N^2)$，dpなど\n$N=2\\times 10^5$ $O(N),O(N\\log N)$，愚直$O(N^2)$を，アルゴリズムやデータ構造を使って$O(N\\log N)$に改善させる問題が多い．\n$N=10^9,10^{18}$ $O(\\log N),O(1)$ ダブリング，最大公約数，桁dp，二分探索など\n$N=10^{12}$ $O(\\sqrt{N})$，素因数分解，約数列挙\n定数倍高速化  dpで，bool値を取っている場合，long型にして64倍高速化が可能かも 素因数分解をたくさんする場合，先に素数列挙しておく  これは定数倍高速化というのか微妙    円環の構造 数列などの最後と最初を連続しているとみなすときに(人が円の形に並んでいる，などのシュチュエーション)，同じ数列を2つくっつけると楽である．\n期待値，確率  独立に考えられないか  ビット演算  ビットごと独立に考えられる．  XOR  1が奇数個で1，偶数個で0  同じ数が偶数個あれば打ち消す $\\mod 2$の足し算ともいえる   $A\\oplus B = C$のとき，$C\\oplus B =A$ $A\\oplus A = 0$ 可換($A\\oplus B=B\\oplus A$)，結合的  ゲーム  多くの場合，あと1手でゲームが終了する状態から逆算して考える． Grundy数計算 Nim  転倒数  バブルソートの交換回数のこと． BITを使って$O(N\\log N)$  ",
+  "wordCount" : "620",
   "inLanguage": "ja",
   "datePublished": "2022-05-22T03:00:38+09:00",
   "dateModified": "2022-05-22T03:00:38+09:00",
@@ -346,7 +346,9 @@ auto 型を推定してくれる．例えば，次のコードで，vectorのX�
                 <li>
                     <a href="#n2times-105" aria-label="$N=2\times 10^5$">$N=2\times 10^5$</a></li>
                 <li>
-                    <a href="#n1091018" aria-label="$N=10^9,10^18$">$N=10^9,10^18$</a></li></ul>
+                    <a href="#n1091018" aria-label="$N=10^9,10^{18}$">$N=10^9,10^{18}$</a></li>
+                <li>
+                    <a href="#n1012" aria-label="$N=10^{12}$">$N=10^{12}$</a></li></ul>
                 </li>
                 <li>
                     <a href="#%e5%ae%9a%e6%95%b0%e5%80%8d%e9%ab%98%e9%80%9f%e5%8c%96" aria-label="定数倍高速化">定数倍高速化</a></li>
@@ -355,9 +357,15 @@ auto 型を推定してくれる．例えば，次のコードで，vectorのX�
                 <li>
                     <a href="#%e6%9c%9f%e5%be%85%e5%80%a4%e7%a2%ba%e7%8e%87" aria-label="期待値，確率">期待値，確率</a></li>
                 <li>
-                    <a href="#%e3%83%93%e3%83%83%e3%83%88%e6%bc%94%e7%ae%97-1" aria-label="ビット演算">ビット演算</a></li>
+                    <a href="#%e3%83%93%e3%83%83%e3%83%88%e6%bc%94%e7%ae%97-1" aria-label="ビット演算">ビット演算</a><ul>
+                        
                 <li>
-                    <a href="#%e3%82%b2%e3%83%bc%e3%83%a0" aria-label="ゲーム">ゲーム</a>
+                    <a href="#xor" aria-label="XOR">XOR</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e3%82%b2%e3%83%bc%e3%83%a0" aria-label="ゲーム">ゲーム</a></li>
+                <li>
+                    <a href="#%e8%bb%a2%e5%80%92%e6%95%b0" aria-label="転倒数">転倒数</a>
                 </li>
             </ul>
             </li>
@@ -715,22 +723,24 @@ all: $(targets)
 <h4 id="n40">$N=40$<a hidden class="anchor" aria-hidden="true" href="#n40">#</a></h4>
 <p>半分列挙</p>
 <h4 id="n100">$N=100$<a hidden class="anchor" aria-hidden="true" href="#n100">#</a></h4>
-<p>$O(N^4),O(N^3\log X),O(N^3)$，区間dpなど</p>
+<p>$O(N^4),O(N^3\log X),O(N^3)$，区間dp，行列累乗など</p>
 <h4 id="n1000">$N=1000$<a hidden class="anchor" aria-hidden="true" href="#n1000">#</a></h4>
 <p>$O(N^2\log X),O(N^2)$，dpなど</p>
 <h4 id="n2times-105">$N=2\times 10^5$<a hidden class="anchor" aria-hidden="true" href="#n2times-105">#</a></h4>
-<p>$O(N),O(N\log N)$</p>
-<h4 id="n1091018">$N=10^9,10^18$<a hidden class="anchor" aria-hidden="true" href="#n1091018">#</a></h4>
+<p>$O(N),O(N\log N)$，愚直$O(N^2)$を，アルゴリズムやデータ構造を使って$O(N\log N)$に改善させる問題が多い．</p>
+<h4 id="n1091018">$N=10^9,10^{18}$<a hidden class="anchor" aria-hidden="true" href="#n1091018">#</a></h4>
 <p>$O(\log N),O(1)$
-ダブリング，最大公約数，桁dpなど</p>
+ダブリング，最大公約数，桁dp，二分探索など</p>
+<h4 id="n1012">$N=10^{12}$<a hidden class="anchor" aria-hidden="true" href="#n1012">#</a></h4>
+<p>$O(\sqrt{N})$，素因数分解，約数列挙</p>
 <h3 id="定数倍高速化">定数倍高速化<a hidden class="anchor" aria-hidden="true" href="#定数倍高速化">#</a></h3>
 <ul>
+<li>dpで，bool値を取っている場合，long型にして64倍高速化が可能かも</li>
 <li>素因数分解をたくさんする場合，先に素数列挙しておく
 <ul>
 <li>これは定数倍高速化というのか微妙</li>
 </ul>
 </li>
-<li>dpで，bool値を取っている場合，long型にして64倍高速化が可能かも</li>
 </ul>
 <h3 id="円環の構造">円環の構造<a hidden class="anchor" aria-hidden="true" href="#円環の構造">#</a></h3>
 <p>数列などの最後と最初を連続しているとみなすときに(人が円の形に並んでいる，などのシュチュエーション)，同じ数列を2つくっつけると楽である．</p>
@@ -740,12 +750,30 @@ all: $(targets)
 </ul>
 <h3 id="ビット演算-1">ビット演算<a hidden class="anchor" aria-hidden="true" href="#ビット演算-1">#</a></h3>
 <ul>
-<li>ビットごと独立に考えられる</li>
+<li>ビットごと独立に考えられる．</li>
+</ul>
+<h4 id="xor">XOR<a hidden class="anchor" aria-hidden="true" href="#xor">#</a></h4>
+<ul>
+<li>1が奇数個で1，偶数個で0
+<ul>
+<li>同じ数が偶数個あれば打ち消す</li>
+<li>$\mod 2$の足し算ともいえる</li>
+</ul>
+</li>
+<li>$A\oplus B = C$のとき，$C\oplus B =A$</li>
+<li>$A\oplus A = 0$</li>
+<li>可換($A\oplus B=B\oplus A$)，結合的</li>
 </ul>
 <h3 id="ゲーム">ゲーム<a hidden class="anchor" aria-hidden="true" href="#ゲーム">#</a></h3>
 <ul>
+<li>多くの場合，あと1手でゲームが終了する状態から逆算して考える．</li>
 <li>Grundy数計算</li>
 <li>Nim</li>
+</ul>
+<h3 id="転倒数">転倒数<a hidden class="anchor" aria-hidden="true" href="#転倒数">#</a></h3>
+<ul>
+<li>バブルソートの交換回数のこと．</li>
+<li>BITを使って$O(N\log N)$</li>
 </ul>
 
 

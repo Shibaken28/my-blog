@@ -195,6 +195,24 @@ if (!doNotTrack) {
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2>Jo-ken Beginner Contest 001 解説など
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>これは何 部活動で僕が勝手に新入生向けに開催したJo-ken’s beginner Contest 001の解説記事です．
+解説 A - year to seconds 問題概要  1年は何秒か．ただし，1年は365日とする．
+ 解説 掛け算の問題です．電卓を叩かなくても，プログラムが計算してくれます．
+Python print(365*24*60*60) C&#43;&#43; #include &lt;iostream&gt; int main(){  cout&lt;&lt;365*60*60&lt;&lt;endl; } B - 単位拾い 問題概要  $P$の値が$60$以上であるか，$60$未満であるかを判定する
+ 解答 if文を使います．
+Python pythonを使う場合，インデントに注意しましょう．
+p = int(input()) if p &lt; 60:  print(&#34;failed&#34;) else:  print(&#34;passed&#34;) C&#43;&#43; #include &lt;iostream&gt;using namespace std;  int main() {  int p;cin&gt;&gt;p;  if(p&lt;60){  cout&lt;&lt;&#34;failed&#34;&lt;&lt;endl;  }else{  cout&lt;&lt;&#34;passed&#34;&lt;&lt;endl;  } } C - weeks and days 問題概要  今日が$D$日のとき，27日までが何週間何日か．...</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-07-06 16:40:33 +0900 JST'>2022-07-06</span>&nbsp;·&nbsp;4 分&nbsp;·&nbsp;Me</footer>
+  <a class="entry-link" aria-label="post link to Jo-ken Beginner Contest 001 解説など" href="https://shibaken28.github.io/my-blog/post/kyopro/jbc001/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2>コーディングでのやらかし
     </h2>
   </header>
@@ -331,23 +349,6 @@ Good morning class! It&#39;s me Ms. Adleman-Shamir-Rivest Today we will be takin
   </div>
   <footer class="entry-footer"><span title='2022-05-11 21:16:22 +0900 JST'>2022-05-11</span>&nbsp;·&nbsp;3 分&nbsp;·&nbsp;Me</footer>
   <a class="entry-link" aria-label="post link to picoGym - rsa-pop-quiz" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2>CrewCTF 2022 - The Huge E
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>問題 ctfTimeの問題ページ out.txtは次のようになっています．
-p = 127557933868274766492781168166651795645253551106939814103375361345423596703884421796150924794852741931334746816404778765897684777811408386179315837751682393250322682273488477810275794941270780027115435485813413822503016999058941190903932883823 e1 = 219560036291700924162367491740680392841 e2 = 325829142086458078752836113369745585569 e3 = 237262361171684477270779152881433264701 c = 962976093858853504877937799237367527464560456536071770645193845048591657714868645727169308285896910567283470660044952959089092802768837038911347652160892917850466319249036343642773207046774240176141525105555149800395040339351956120433647613 平文を$m$，ある素数を$p$とすると，$m^e \bmod p = c$として暗号文$c$を求めています．ただし，$e = {e_1}^{{e_2}^{e_3}}$です． $e_1,e_2,e_3$が与えられているので，$e$を求めれば $d = e^{-1} \pmod{\phi(p)} $として$c^d \pmod p$で平文が求まります．
-しかし，$e$を実際に計算しようとすると無限時間かかります． どう計算するかが問題です．
-解答 $e$の値は$\bmod {\phi(p)}$の世界で考えても問題ありません． ${e_1}^{{e_2}^{e_3}} \pmod{\phi(p)}$の値を求めていきます． オイラーの定理より，次が成り立ちます． $${e_1}^{\phi(\phi(p))} = 1 \pmod{\phi(p)} $$ $p$は素数であるので，$\phi(p)=p-1$です(フェルマーの小定理)．よって，次のように書き換えられます． $${e_1}^{\phi(p-1)} = 1 \pmod{p-1}$$
-整数$k$と$l$を使って，${e_2}^{e_3} = \phi(p-1)k&#43;l$と表されたとします．これは，${e_2}^{e_3}$を$\phi(p-1)$で割ったときに商が$k$，余りが$l$になったことを表しています． すると， $${e_1}^{{e_2}^{e_3}} = {e_1}^{ \phi(p-1)k&#43;l} = ({e_1}^{\phi(p-1)})^k\cdot {e_1}^l = 1^k \cdot {e_1}^l = {e_1}^l \pmod{p-1}$$
-と計算できます．つまり，$l={e_2}^{e_3} \pmod{\phi(p-1)}$として，${e_1}^l \pmod{p-1}$を計算すれば$e$が求まります．...</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-05-09 12:59:30 +0900 JST'>2022-05-09</span>&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Me</footer>
-  <a class="entry-link" aria-label="post link to CrewCTF 2022 - The Huge E" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/crew/thehugee/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

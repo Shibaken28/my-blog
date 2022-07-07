@@ -9,7 +9,22 @@
       <link>https://shibaken28.github.io/my-blog/47</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 04 Jun 2022 19:34:10 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 06 Jul 2022 16:40:33 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jo-ken Beginner Contest 001 解説など</title>
+      <link>https://shibaken28.github.io/my-blog/post/kyopro/jbc001/</link>
+      <pubDate>Wed, 06 Jul 2022 16:40:33 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/kyopro/jbc001/</guid>
+      <description>これは何 部活動で僕が勝手に新入生向けに開催したJo-ken&amp;rsquo;s beginner Contest 001の解説記事です．
+解説 A - year to seconds 問題概要  1年は何秒か．ただし，1年は365日とする．
+ 解説 掛け算の問題です．電卓を叩かなくても，プログラムが計算してくれます．
+Python print(365*24*60*60) C++ #include &amp;lt;iostream&amp;gt; int main(){  cout&amp;lt;&amp;lt;365*60*60&amp;lt;&amp;lt;endl; } B - 単位拾い 問題概要  $P$の値が$60$以上であるか，$60$未満であるかを判定する
+ 解答 if文を使います．
+Python pythonを使う場合，インデントに注意しましょう．
+p = int(input()) if p &amp;lt; 60:  print(&amp;#34;failed&amp;#34;) else:  print(&amp;#34;passed&amp;#34;) C++ #include &amp;lt;iostream&amp;gt;using namespace std;  int main() {  int p;cin&amp;gt;&amp;gt;p;  if(p&amp;lt;60){  cout&amp;lt;&amp;lt;&amp;#34;failed&amp;#34;&amp;lt;&amp;lt;endl;  }else{  cout&amp;lt;&amp;lt;&amp;#34;passed&amp;#34;&amp;lt;&amp;lt;endl;  } } C - weeks and days 問題概要  今日が$D$日のとき，27日までが何週間何日か．</description>
+    </item>
+    
     <item>
       <title>コーディングでのやらかし</title>
       <link>https://shibaken28.github.io/my-blog/post/kyopro/wa/</link>
