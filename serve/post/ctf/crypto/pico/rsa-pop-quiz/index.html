@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6WN9NG9DQ2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6WN9NG9DQ2');
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>picoGym - rsa-pop-quiz | shibak3n</title>
+<meta name="keywords" content="ctf, crypto, writeup, RSA, warmup">
+<meta name="description" content="picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．
+概要 Class, take your seats! It&#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．
+解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．
+$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
+pythonでは，$a^b \mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．
+解法 1問目 ncすると次のメッセージが表示されます．
+Good morning class! It&#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!">
+<meta name="author" content="Me">
+<link rel="canonical" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/">
+<link crossorigin="anonymous" href="/my-blog/assets/css/stylesheet.min.ec8da366ca2fb647537ccb7a8f6fa5b4e9cd3c7a0d3171dd2d3baad1e49c8bfc.css" integrity="sha256-7I2jZsovtkdTfMt6j2&#43;ltOnNPHoNMXHdLTuq0eSci/w=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/my-blog/assets/js/highlight.min.2840b7fccd34145847db71a290569594bdbdb00047097f75d6495d162f5d7dff.js" integrity="sha256-KEC3/M00FFhH23GikFaVlL29sABHCX911kldFi9dff8="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://shibaken28.github.io/images/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://shibaken28.github.io/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://shibaken28.github.io/images/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://shibaken28.github.io/images/apple-touch-icon.png">
+<link rel="mask-icon" href="https://shibaken28.github.io/my-blog/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="ja" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-213338303-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script><meta property="og:title" content="picoGym - rsa-pop-quiz" />
+<meta property="og:description" content="picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．
+概要 Class, take your seats! It&#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．
+解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．
+$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
+pythonでは，$a^b \mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．
+解法 1問目 ncすると次のメッセージが表示されます．
+Good morning class! It&#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/" /><meta property="og:image" content="https://shibaken28.github.io/my-blog/47"/><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-05-11T21:16:22&#43;09:00" />
+<meta property="article:modified_time" content="2022-05-11T21:16:22&#43;09:00" /><meta property="og:site_name" content="My blog" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shibaken28.github.io/my-blog/47"/>
+
+<meta name="twitter:title" content="picoGym - rsa-pop-quiz"/>
+<meta name="twitter:description" content="picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．
+概要 Class, take your seats! It&#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．
+解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．
+$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
+pythonでは，$a^b \mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．
+解法 1問目 ncすると次のメッセージが表示されます．
+Good morning class! It&#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://shibaken28.github.io/my-blog/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "picoGym - rsa-pop-quiz",
+      "item": "https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "picoGym - rsa-pop-quiz",
+  "name": "picoGym - rsa-pop-quiz",
+  "description": "picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．\n概要 Class, take your seats! It\u0026#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．\n解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．\n$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \\mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \\mod \\phi(n)$$ と計算すると，平文$m$が $$m = c^d \\mod n$$ で求めることができる． なお，この場合，$\\phi(n) = (p-1)(q-1)$である．\npythonでは，$a^b \\mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．\n解法 1問目 ncすると次のメッセージが表示されます．\nGood morning class! It\u0026#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!",
+  "keywords": [
+    "ctf", "crypto", "writeup", "RSA", "warmup"
+  ],
+  "articleBody": "picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．\n概要 Class, take your seats! It's PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．\n解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．\n$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \\mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \\mod \\phi(n)$$ と計算すると，平文$m$が $$m = c^d \\mod n$$ で求めることができる． なお，この場合，$\\phi(n) = (p-1)(q-1)$である．\npythonでは，$a^b \\mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．\n解法 1問目 ncすると次のメッセージが表示されます．\nGood morning class! It's me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do! You will need to tell me if each example is possible, given your extensive crypto knowledge. Inputs and outputs are in decimal. No hex here! #### NEW PROBLEM #### q : 60413 p : 76753 ##### PRODUCE THE FOLLOWING #### n IS THIS POSSIBLE and FEASIBLE? (Y/N): $p,q$の値が与えられ，$n$を求めることは可能ですか？，と聞かれています． $n=pq$の定義より，$n$は計算可能です． このような，単純な計算はpythonのインタラクティブ機能が便利です．\n p = 60413  q = 76753  n = p*q  n 4636878989 2問目 #### NEW PROBLEM #### p : 54269 n : 5051846941 ##### PRODUCE THE FOLLOWING #### q IS THIS POSSIBLE and FEASIBLE? (Y/N):y $n,p$の値から$q$を求める問題です．$n=pq$から$p=n/q$で求められそうです． 一応，$n$が$p$で割り切れない場合を考慮しておきます．\n p = 54269  n = 5051846941  q = n//p  q 93089  p*q == n True 3問目 #### NEW PROBLEM #### e : 3 n : 12738162802910546503821920886905393316386362759567480839428456525224226445173031635306683726182522494910808518920409019414034814409330094245825749680913204566832337704700165993198897029795786969124232138869784626202501366135975223827287812326250577148625360887698930625504334325804587329905617936581116392784684334664204309771430814449606147221349888320403451637882447709796221706470239625292297988766493746209684880843111138170600039888112404411310974758532603998608057008811836384597579147244737606088756299939654265086899096359070667266167754944587948695842171915048619846282873769413489072243477764350071787327913 ##### PRODUCE THE FOLLOWING #### q p IS THIS POSSIBLE and FEASIBLE? (Y/N):n $pq=n$を満たす$p$と$q$を求める問題です． RSA暗号は，$n$から$p,q$を計算することは困難である(ことを利用して安全性としている)ので，これはできません．実際，頑張れば素因数分解できるかもしれませんが，FEASIBLEという単語が，「単純に可能だ」みたいなニュアンスなので，無理やり素因数分解するのはnot FEASIBLEということなのだと思います．\n4問目 #### NEW PROBLEM #### q : 66347 p : 12611 ##### PRODUCE THE FOLLOWING #### totient(n) IS THIS POSSIBLE and FEASIBLE? (Y/N):y totient(n)とは，$\\phi(n)$のことですので，$p,q$から計算できます．\n q = 66347  P = 12611  (p-1)*(q-1) 836623060 5問目 #### NEW PROBLEM #### plaintext : 6357294171489311547190987615544575133581967886499484091352661406414044440475205342882841236357665973431462491355089413710392273380203038793241564304774271529108729717 e : 3 n : 29129463609326322559521123136222078780585451208149138547799121083622333250646678767769126248182207478527881025116332742616201890576280859777513414460842754045651093593251726785499360828237897586278068419875517543013545369871704159718105354690802726645710699029936754265654381929650494383622583174075805797766685192325859982797796060391271817578087472948205626257717479858369754502615173773514087437504532994142632207906501079835037052797306690891600559321673928943158514646572885986881016569647357891598545880304236145548059520898133142087545369179876065657214225826997676844000054327141666320553082128424707948750331 ##### PRODUCE THE FOLLOWING #### ciphertext IS THIS POSSIBLE and FEASIBLE? (Y/N):y $m,e,n$から$c$を求めます．必要なパラメータは揃っているため，計算可能です．\n m = 6357294171489311547190987615544575133581967886499484091352661406414044440475205342882841236357665973431462491355089413710392273380203038793241564304774271529108729717  e = 3  n = 29129463609326322559521123136222078780585451208149138547799121083622333250646678767769126248182207478527881025116332742616201890576280859777513414460842754045651093593251726785499360828237897586278068419875517543013545369871704159718105354690802726645710699029936754265654381929650494383622583174075805797766685192325859982797796060391271817578087472948205626257717479858369754502615173773514087437504532994142632207906501079835037052797306690891600559321673928943158514646572885986881016569647357891598545880304236145548059520898133142087545369179876065657214225826997676844000054327141666320553082128424707948750331  pow(m,e,n) 256931246631782714357241556582441991993437399854161372646318659020994329843524306570818293602492485385337029697819837182169818816821461486018802894936801257629375428544752970630870631166355711254848465862207765051226282541748174535990314552471546936536330397892907207943448897073772015986097770443616540466471245438117157152783246654401668267323136450122287983612851171545784168132230208726238881861407976917850248110805724300421712827401063963117423718797887144760360749619552577176382615108244813 6問目  #### NEW PROBLEM #### ciphertext : 107524013451079348539944510756143604203925717262185033799328445011792760545528944993719783392542163428637172323512252624567111110666168664743115203791510985709942366609626436995887781674651272233566303814979677507101168587739375699009734588985482369702634499544891509228440194615376339573685285125730286623323 e : 3 n : 27566996291508213932419371385141522859343226560050921196294761870500846140132385080994630946107675330189606021165260590147068785820203600882092467797813519434652632126061353583124063944373336654246386074125394368479677295167494332556053947231141336142392086767742035970752738056297057898704112912616565299451359791548536846025854378347423520104947907334451056339439706623069503088916316369813499705073573777577169392401411708920615574908593784282546154486446779246790294398198854547069593987224578333683144886242572837465834139561122101527973799583927411936200068176539747586449939559180772690007261562703222558103359 ##### PRODUCE THE FOLLOWING #### plaintext IS THIS POSSIBLE and FEASIBLE? (Y/N):n $n,e,c$の値から$m$を見つける問題です． これは，公開鍵のみから平文を解読することになってしまうので，RSA暗号の性質としてはそのようなことはできません． 非常にlow exponent attackができそうな見た目をしていますが，そのまま3乗根をとることはできません．ひっかけ問題．\n7問目 #### NEW PROBLEM #### q : 92092076805892533739724722602668675840671093008520241548191914215399824020372076186460768206814914423802230398410980218741906960527104568970225804374404612617736579286959865287226538692911376507934256844456333236362669879347073756238894784951597211105734179388300051579994253565459304743059533646753003894559 p : 97846775312392801037224396977012615848433199640105786119757047098757998273009741128821931277074555731813289423891389911801250326299324018557072727051765547115514791337578758859803890173153277252326496062476389498019821358465433398338364421624871010292162533041884897182597065662521825095949253625730631876637 e : 65537 ##### PRODUCE THE FOLLOWING #### d IS THIS POSSIBLE and FEASIBLE? (Y/N):y $p,q$から$\\phi(n)$が計算できます．\n p = 92092076805892533739724722602668675840671093008520241548191914215399824020372076186460768206814914423802230398410980218741906960527104568970225804374404612617736579286959865287226538692911376507934256844456333236362669879347073756238894784951597211105734179388300051579994253565459304743059533646753003894559  q = 97846775312392801037224396977012615848433199640105786119757047098757998273009741128821931277074555731813289423891389911801250326299324018557072727051765547115514791337578758859803890173153277252326496062476389498019821358465433398338364421624871010292162533041884897182597065662521825095949253625730631876637  phi = (p-1)*(q-1)  e = 65537  pow(e,-1,phi) 1405046269503207469140791548403639533127416416214210694972085079171787580463776820425965898174272870486015739516125786182821637006600742140682552321645503743280670839819078749092730110549881891271317396450158021688253989767145578723458252769465545504142139663476747479225923933192421405464414574786272963741656223941750084051228611576708609346787101088759062724389874160693008783334605903142528824559223515203978707969795087506678894006628296743079886244349469131831225757926844843554897638786146036869572653204735650843186722732736888918789379054050122205253165705085538743651258400390580971043144644984654914856729 8問目 #### NEW PROBLEM #### p : 153143042272527868798412612417204434156935146874282990942386694020462861918068684561281763577034706600608387699148071015194725533394126069826857182428660427818277378724977554365910231524827258160904493774748749088477328204812171935987088715261127321911849092207070653272176072509933245978935455542420691737433 ciphertext : 13433290949680532374013867441263154634705815037382789341947905025573905974395028146503162155477260989520870175638250366834087929309236841056522311567941474209163559687755762232926539910909326834168973560610986090744435081572047926364479629414399701920441091626046861493465214197526650146669009590360242375313096062285541413327190041808752295242278877995930751460977420696964385608409717277431821765402461515639686537904799084682553530460611519251872463837425068958992042166507373556839377045616866221238932332390930404993242351071392965945718308504231468783743378794612151028803489143522912976113314577732444166162766 e : 65537 n : 23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239 ##### PRODUCE THE FOLLOWING #### plaintext IS THIS POSSIBLE and FEASIBLE? (Y/N):y 方針としては，\n まず，$n,p$から$q$を計算 $p,q$から$\\phi(n)$を計算 $e,phi(n)$から$e$を計算 $c,e,n$から$m$を計算  をすることで平文$m$が求まります．\n p = 153143042272527868798412612417204434156935146874282990942386694020462861918068684561281763577034706600608387699148071015194725533394126069826857182428660427818277378724977554365910231524827258160904493774748749088477328204812171935987088715261127321911849092207070653272176072509933245978935455542420691737433  n = 23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239  e = 65537  c = 13433290949680532374013867441263154634705815037382789341947905025573905974395028146503162155477260989520870175638250366834087929309236841056522311567941474209163559687755762232926539910909326834168973560610986090744435081572047926364479629414399701920441091626046861493465214197526650146669009590360242375313096062285541413327190041808752295242278877995930751460977420696964385608409717277431821765402461515639686537904799084682553530460611519251872463837425068958992042166507373556839377045616866221238932332390930404993242351071392965945718308504231468783743378794612151028803489143522912976113314577732444166162766  q = n//p  q 156408916769576372285319235535320446340733908943564048157238512311891352879208957302116527435165097143521156600690562005797819820759620198602417583539668686152735534648541252847927334505648478214810780526425005943955838623325525300844493280040860604499838598837599791480284496210333200247148213274376422459183  p*q == n True  phi = (p-1)*(q-1)  pow(e,-1,phi) 22034129334251191532436631052427142022088744911087428294376533303549714947731798818325604737385904031714383011477708757017443918217594934051491731465975983129741023155187658874730504062262863677059204116473042418196655483682312571059072267891580301964167098006533984400230039789561227549336513668349914598133972091774519248676772440875769025772999278219313806132022105603602125065517276257780089695487263525233311631530270816107086663522684249560931634897706468898520986823978521565593553989544219514141658868117625286137870896148765109851519254459305427251830096270116145359667655034114642356864731801259263519426097  d = pow(e,-1,phi)  pow(c,d,n) 14311663942709674867122208214901970650496788151239520971623411712977120527163003942343369341 If you convert the last plaintext to a hex number, then ascii, you'll find what you need! ;) この答えがそのままflagになっているので，デコードします．\n from Crypto.Util.number import long_to_bytes  long_to_bytes(14311663942709674867122208214901970650496788151239520971623411712977120527163003942343369341) b'picoCTF{wA8_th4t$_ill3aGal..oa2d2239b}' 余談 Noと答える問題は混乱するので，ない方が良かったと思います…… あと，ncを繋いだまま計算することになるので，地味にタイムアウトが厳しいです． 何回か周回することになりました．\n",
+  "wordCount" : "471",
+  "inLanguage": "ja",
+  "datePublished": "2022-05-11T21:16:22+09:00",
+  "dateModified": "2022-05-11T21:16:22+09:00",
+  "author":{
+    "@type": "Person",
+    "name": "Me"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "shibak3n",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shibaken28.github.io/images/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://shibaken28.github.io/my-blog/" accesskey="h" title="shibak3n (Alt + H)">shibak3n</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                    <li>
+                        <a href="https://shibaken28.github.io/my-blog/en/" title="English"
+                            aria-label="En">En</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://shibaken28.github.io/my-blog/aboutme" title="AboutMe">
+                    <span>AboutMe</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shibaken28.github.io/my-blog/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shibaken28.github.io/my-blog/search" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://shibaken28.github.io/my-blog/tags" title="Tag">
+                    <span>Tag</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://shibaken28.github.io/my-blog/">Home</a>&nbsp;»&nbsp;<a href="https://shibaken28.github.io/my-blog/post/">Posts</a></div>
+    <h1 class="post-title">
+      picoGym - rsa-pop-quiz
+    </h1>
+    <div class="post-meta"><span title='2022-05-11 21:16:22 +0900 JST'>2022-05-11</span>&nbsp;·&nbsp;3 分&nbsp;·&nbsp;Me
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">目次</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e6%a6%82%e8%a6%81" aria-label="概要">概要</a></li>
+                <li>
+                    <a href="#%e8%a7%a3%e7%ad%94" aria-label="解答">解答</a><ul>
+                        
+                <li>
+                    <a href="#%e5%9f%ba%e6%9c%ac" aria-label="基本">基本</a></li>
+                <li>
+                    <a href="#%e8%a7%a3%e6%b3%95" aria-label="解法">解法</a><ul>
+                        
+                <li>
+                    <a href="#1%e5%95%8f%e7%9b%ae" aria-label="1問目">1問目</a></li>
+                <li>
+                    <a href="#2%e5%95%8f%e7%9b%ae" aria-label="2問目">2問目</a></li>
+                <li>
+                    <a href="#3%e5%95%8f%e7%9b%ae" aria-label="3問目">3問目</a></li>
+                <li>
+                    <a href="#4%e5%95%8f%e7%9b%ae" aria-label="4問目">4問目</a></li>
+                <li>
+                    <a href="#5%e5%95%8f%e7%9b%ae" aria-label="5問目">5問目</a></li>
+                <li>
+                    <a href="#6%e5%95%8f%e7%9b%ae" aria-label="6問目">6問目</a></li>
+                <li>
+                    <a href="#7%e5%95%8f%e7%9b%ae" aria-label="7問目">7問目</a></li>
+                <li>
+                    <a href="#8%e5%95%8f%e7%9b%ae" aria-label="8問目">8問目</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#%e4%bd%99%e8%ab%87" aria-label="余談">余談</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．</p>
+<h2 id="概要">概要<a hidden class="anchor" aria-hidden="true" href="#概要">#</a></h2>
+<pre tabindex="0"><code>Class, take your seats! It&#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821
+</code></pre><p><code>nc</code>すると，RSA暗号の基本知識を問われます．</p>
+<h2 id="解答">解答<a hidden class="anchor" aria-hidden="true" href="#解答">#</a></h2>
+<h3 id="基本">基本<a hidden class="anchor" aria-hidden="true" href="#基本">#</a></h3>
+<p>この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．</p>
+<p>$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする．
+平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は
+$$c = m^e \mod n$$
+で計算され，秘密鍵$d$を
+$$d = e^{-1} \mod \phi(n)$$
+と計算すると，平文$m$が
+$$m = c^d \mod n$$
+で求めることができる．
+なお，この場合，$\phi(n) = (p-1)(q-1)$である．</p>
+<p>pythonでは，$a^b \mod c$を<code>pow(a,b,c)</code>で計算することができる($b=-1$でも動作する)．</p>
+<h3 id="解法">解法<a hidden class="anchor" aria-hidden="true" href="#解法">#</a></h3>
+<h4 id="1問目">1問目<a hidden class="anchor" aria-hidden="true" href="#1問目">#</a></h4>
+<p><code>nc</code>すると次のメッセージが表示されます．</p>
+<pre tabindex="0"><code>Good morning class! It&#39;s me Ms. Adleman-Shamir-Rivest
+Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!
+You will need to tell me if each example is possible, given your extensive crypto knowledge.
+Inputs and outputs are in decimal. No hex here!
+#### NEW PROBLEM ####
+q : 60413
+p : 76753
+##### PRODUCE THE FOLLOWING ####
+n
+IS THIS POSSIBLE and FEASIBLE? (Y/N):
+</code></pre><p>$p,q$の値が与えられ，$n$を求めることは可能ですか？，と聞かれています．
+$n=pq$の定義より，$n$は計算可能です．
+このような，単純な計算はpythonのインタラクティブ機能が便利です．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">60413</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q <span style="color:#f92672">=</span> <span style="color:#ae81ff">76753</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> n <span style="color:#f92672">=</span> p<span style="color:#f92672">*</span>q
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> n
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4636878989</span>
+</span></span></code></pre></div><h4 id="2問目">2問目<a hidden class="anchor" aria-hidden="true" href="#2問目">#</a></h4>
+<pre tabindex="0"><code>#### NEW PROBLEM ####
+p : 54269
+n : 5051846941
+##### PRODUCE THE FOLLOWING ####
+q
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+</code></pre><p>$n,p$の値から$q$を求める問題です．$n=pq$から$p=n/q$で求められそうです．
+一応，$n$が$p$で割り切れない場合を考慮しておきます．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">54269</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5051846941</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q <span style="color:#f92672">=</span> n<span style="color:#f92672">//</span>p
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">93089</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> p<span style="color:#f92672">*</span>q <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">True</span>
+</span></span></code></pre></div><h4 id="3問目">3問目<a hidden class="anchor" aria-hidden="true" href="#3問目">#</a></h4>
+<pre tabindex="0"><code>#### NEW PROBLEM ####
+e : 3
+n : 12738162802910546503821920886905393316386362759567480839428456525224226445173031635306683726182522494910808518920409019414034814409330094245825749680913204566832337704700165993198897029795786969124232138869784626202501366135975223827287812326250577148625360887698930625504334325804587329905617936581116392784684334664204309771430814449606147221349888320403451637882447709796221706470239625292297988766493746209684880843111138170600039888112404411310974758532603998608057008811836384597579147244737606088756299939654265086899096359070667266167754944587948695842171915048619846282873769413489072243477764350071787327913
+##### PRODUCE THE FOLLOWING ####
+q
+p
+IS THIS POSSIBLE and FEASIBLE? (Y/N):n
+</code></pre><p>$pq=n$を満たす$p$と$q$を求める問題です．
+RSA暗号は，$n$から$p,q$を計算することは困難である(ことを利用して安全性としている)ので，これはできません．実際，頑張れば素因数分解できるかもしれませんが，FEASIBLEという単語が，「単純に可能だ」みたいなニュアンスなので，無理やり素因数分解するのはnot FEASIBLEということなのだと思います．</p>
+<h4 id="4問目">4問目<a hidden class="anchor" aria-hidden="true" href="#4問目">#</a></h4>
+<pre tabindex="0"><code>#### NEW PROBLEM ####
+q : 66347
+p : 12611
+##### PRODUCE THE FOLLOWING ####
+totient(n)
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+</code></pre><p><code>totient(n)</code>とは，$\phi(n)$のことですので，$p,q$から計算できます．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q <span style="color:#f92672">=</span> <span style="color:#ae81ff">66347</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> P <span style="color:#f92672">=</span> <span style="color:#ae81ff">12611</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> (p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">836623060</span>
+</span></span></code></pre></div><h4 id="5問目">5問目<a hidden class="anchor" aria-hidden="true" href="#5問目">#</a></h4>
+<pre tabindex="0"><code>#### NEW PROBLEM ####
+plaintext : 6357294171489311547190987615544575133581967886499484091352661406414044440475205342882841236357665973431462491355089413710392273380203038793241564304774271529108729717
+e : 3
+n : 29129463609326322559521123136222078780585451208149138547799121083622333250646678767769126248182207478527881025116332742616201890576280859777513414460842754045651093593251726785499360828237897586278068419875517543013545369871704159718105354690802726645710699029936754265654381929650494383622583174075805797766685192325859982797796060391271817578087472948205626257717479858369754502615173773514087437504532994142632207906501079835037052797306690891600559321673928943158514646572885986881016569647357891598545880304236145548059520898133142087545369179876065657214225826997676844000054327141666320553082128424707948750331
+##### PRODUCE THE FOLLOWING ####
+ciphertext
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+</code></pre><p>$m,e,n$から$c$を求めます．必要なパラメータは揃っているため，計算可能です．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> m <span style="color:#f92672">=</span> <span style="color:#ae81ff">6357294171489311547190987615544575133581967886499484091352661406414044440475205342882841236357665973431462491355089413710392273380203038793241564304774271529108729717</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> e <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">29129463609326322559521123136222078780585451208149138547799121083622333250646678767769126248182207478527881025116332742616201890576280859777513414460842754045651093593251726785499360828237897586278068419875517543013545369871704159718105354690802726645710699029936754265654381929650494383622583174075805797766685192325859982797796060391271817578087472948205626257717479858369754502615173773514087437504532994142632207906501079835037052797306690891600559321673928943158514646572885986881016569647357891598545880304236145548059520898133142087545369179876065657214225826997676844000054327141666320553082128424707948750331</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> pow(m,e,n)                                                                                             
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">256931246631782714357241556582441991993437399854161372646318659020994329843524306570818293602492485385337029697819837182169818816821461486018802894936801257629375428544752970630870631166355711254848465862207765051226282541748174535990314552471546936536330397892907207943448897073772015986097770443616540466471245438117157152783246654401668267323136450122287983612851171545784168132230208726238881861407976917850248110805724300421712827401063963117423718797887144760360749619552577176382615108244813</span>
+</span></span></code></pre></div><h4 id="6問目">6問目<a hidden class="anchor" aria-hidden="true" href="#6問目">#</a></h4>
+<pre tabindex="0"><code>
+#### NEW PROBLEM ####
+ciphertext : 107524013451079348539944510756143604203925717262185033799328445011792760545528944993719783392542163428637172323512252624567111110666168664743115203791510985709942366609626436995887781674651272233566303814979677507101168587739375699009734588985482369702634499544891509228440194615376339573685285125730286623323
+e : 3
+n : 27566996291508213932419371385141522859343226560050921196294761870500846140132385080994630946107675330189606021165260590147068785820203600882092467797813519434652632126061353583124063944373336654246386074125394368479677295167494332556053947231141336142392086767742035970752738056297057898704112912616565299451359791548536846025854378347423520104947907334451056339439706623069503088916316369813499705073573777577169392401411708920615574908593784282546154486446779246790294398198854547069593987224578333683144886242572837465834139561122101527973799583927411936200068176539747586449939559180772690007261562703222558103359
+##### PRODUCE THE FOLLOWING ####
+plaintext
+IS THIS POSSIBLE and FEASIBLE? (Y/N):n
+</code></pre><p>$n,e,c$の値から$m$を見つける問題です．
+これは，公開鍵のみから平文を解読することになってしまうので，RSA暗号の性質としてはそのようなことはできません．
+非常にlow exponent attackができそうな見た目をしていますが，そのまま3乗根をとることはできません．ひっかけ問題．</p>
+<h4 id="7問目">7問目<a hidden class="anchor" aria-hidden="true" href="#7問目">#</a></h4>
+<pre tabindex="0"><code>#### NEW PROBLEM ####
+q : 92092076805892533739724722602668675840671093008520241548191914215399824020372076186460768206814914423802230398410980218741906960527104568970225804374404612617736579286959865287226538692911376507934256844456333236362669879347073756238894784951597211105734179388300051579994253565459304743059533646753003894559
+p : 97846775312392801037224396977012615848433199640105786119757047098757998273009741128821931277074555731813289423891389911801250326299324018557072727051765547115514791337578758859803890173153277252326496062476389498019821358465433398338364421624871010292162533041884897182597065662521825095949253625730631876637
+e : 65537
+##### PRODUCE THE FOLLOWING ####
+d
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+</code></pre><p>$p,q$から$\phi(n)$が計算できます．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">92092076805892533739724722602668675840671093008520241548191914215399824020372076186460768206814914423802230398410980218741906960527104568970225804374404612617736579286959865287226538692911376507934256844456333236362669879347073756238894784951597211105734179388300051579994253565459304743059533646753003894559</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q <span style="color:#f92672">=</span> <span style="color:#ae81ff">97846775312392801037224396977012615848433199640105786119757047098757998273009741128821931277074555731813289423891389911801250326299324018557072727051765547115514791337578758859803890173153277252326496062476389498019821358465433398338364421624871010292162533041884897182597065662521825095949253625730631876637</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> phi <span style="color:#f92672">=</span> (p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> e <span style="color:#f92672">=</span> <span style="color:#ae81ff">65537</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> pow(e,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,phi)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1405046269503207469140791548403639533127416416214210694972085079171787580463776820425965898174272870486015739516125786182821637006600742140682552321645503743280670839819078749092730110549881891271317396450158021688253989767145578723458252769465545504142139663476747479225923933192421405464414574786272963741656223941750084051228611576708609346787101088759062724389874160693008783334605903142528824559223515203978707969795087506678894006628296743079886244349469131831225757926844843554897638786146036869572653204735650843186722732736888918789379054050122205253165705085538743651258400390580971043144644984654914856729</span>
+</span></span></code></pre></div><h4 id="8問目">8問目<a hidden class="anchor" aria-hidden="true" href="#8問目">#</a></h4>
+<pre tabindex="0"><code>#### NEW PROBLEM ####
+p : 153143042272527868798412612417204434156935146874282990942386694020462861918068684561281763577034706600608387699148071015194725533394126069826857182428660427818277378724977554365910231524827258160904493774748749088477328204812171935987088715261127321911849092207070653272176072509933245978935455542420691737433        
+ciphertext : 13433290949680532374013867441263154634705815037382789341947905025573905974395028146503162155477260989520870175638250366834087929309236841056522311567941474209163559687755762232926539910909326834168973560610986090744435081572047926364479629414399701920441091626046861493465214197526650146669009590360242375313096062285541413327190041808752295242278877995930751460977420696964385608409717277431821765402461515639686537904799084682553530460611519251872463837425068958992042166507373556839377045616866221238932332390930404993242351071392965945718308504231468783743378794612151028803489143522912976113314577732444166162766
+e : 65537
+n : 23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239
+##### PRODUCE THE FOLLOWING ####
+plaintext
+IS THIS POSSIBLE and FEASIBLE? (Y/N):y
+</code></pre><p>方針としては，</p>
+<ul>
+<li>まず，$n,p$から$q$を計算</li>
+<li>$p,q$から$\phi(n)$を計算</li>
+<li>$e,phi(n)$から$e$を計算</li>
+<li>$c,e,n$から$m$を計算</li>
+</ul>
+<p>をすることで平文$m$が求まります．</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> p <span style="color:#f92672">=</span> <span style="color:#ae81ff">153143042272527868798412612417204434156935146874282990942386694020462861918068684561281763577034706600608387699148071015194725533394126069826857182428660427818277378724977554365910231524827258160904493774748749088477328204812171935987088715261127321911849092207070653272176072509933245978935455542420691737433</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">23952937352643527451379227516428377705004894508566304313177880191662177061878993798938496818120987817049538365206671401938265663712351239785237507341311858383628932183083145614696585411921662992078376103990806989257289472590902167457302888198293135333083734504191910953238278860923153746261500759411620299864395158783509535039259714359526738924736952759753503357614939203434092075676169179112452620687731670534906069845965633455748606649062394293289967059348143206600765820021392608270528856238306849191113241355842396325210132358046616312901337987464473799040762271876389031455051640937681745409057246190498795697239</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> e <span style="color:#f92672">=</span> <span style="color:#ae81ff">65537</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> c <span style="color:#f92672">=</span> <span style="color:#ae81ff">13433290949680532374013867441263154634705815037382789341947905025573905974395028146503162155477260989520870175638250366834087929309236841056522311567941474209163559687755762232926539910909326834168973560610986090744435081572047926364479629414399701920441091626046861493465214197526650146669009590360242375313096062285541413327190041808752295242278877995930751460977420696964385608409717277431821765402461515639686537904799084682553530460611519251872463837425068958992042166507373556839377045616866221238932332390930404993242351071392965945718308504231468783743378794612151028803489143522912976113314577732444166162766</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q <span style="color:#f92672">=</span> n<span style="color:#f92672">//</span>p
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> q
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">156408916769576372285319235535320446340733908943564048157238512311891352879208957302116527435165097143521156600690562005797819820759620198602417583539668686152735534648541252847927334505648478214810780526425005943955838623325525300844493280040860604499838598837599791480284496210333200247148213274376422459183</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> p<span style="color:#f92672">*</span>q <span style="color:#f92672">==</span> n
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> phi <span style="color:#f92672">=</span> (p<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>(q<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> pow(e,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,phi)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">22034129334251191532436631052427142022088744911087428294376533303549714947731798818325604737385904031714383011477708757017443918217594934051491731465975983129741023155187658874730504062262863677059204116473042418196655483682312571059072267891580301964167098006533984400230039789561227549336513668349914598133972091774519248676772440875769025772999278219313806132022105603602125065517276257780089695487263525233311631530270816107086663522684249560931634897706468898520986823978521565593553989544219514141658868117625286137870896148765109851519254459305427251830096270116145359667655034114642356864731801259263519426097</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> d <span style="color:#f92672">=</span> pow(e,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,phi)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span> pow(c,d,n)
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">14311663942709674867122208214901970650496788151239520971623411712977120527163003942343369341</span>
+</span></span></code></pre></div><pre tabindex="0"><code class="language-none" data-lang="none">If you convert the last plaintext to a hex number, then ascii, you&#39;ll find what you need! ;)
+</code></pre><p>この答えがそのままflagになっているので，デコードします．</p>
+<pre tabindex="0"><code>&gt;&gt;&gt; from Crypto.Util.number import long_to_bytes
+&gt;&gt;&gt; long_to_bytes(14311663942709674867122208214901970650496788151239520971623411712977120527163003942343369341)
+b&#39;picoCTF{wA8_th4t$_ill3aGal..oa2d2239b}&#39;
+</code></pre><h2 id="余談">余談<a hidden class="anchor" aria-hidden="true" href="#余談">#</a></h2>
+<p>Noと答える問題は混乱するので，ない方が良かったと思います&hellip;&hellip;
+あと，ncを繋いだまま計算することになるので，地味にタイムアウトが厳しいです．
+何回か周回することになりました．</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://shibaken28.github.io/my-blog/tags/ctf/">ctf</a></li>
+      <li><a href="https://shibaken28.github.io/my-blog/tags/crypto/">crypto</a></li>
+      <li><a href="https://shibaken28.github.io/my-blog/tags/writeup/">writeup</a></li>
+      <li><a href="https://shibaken28.github.io/my-blog/tags/rsa/">RSA</a></li>
+      <li><a href="https://shibaken28.github.io/my-blog/tags/warmup/">warmup</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/mini-rsa/">
+    <span class="title">« 前のページ</span>
+    <br>
+    <span>picoGym - Mini RSA</span>
+  </a>
+  <a class="next" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/crew/thehugee/">
+    <span class="title">次のページ »</span>
+    <br>
+    <span>CrewCTF 2022 - The Huge E</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share picoGym - rsa-pop-quiz on twitter"
+        href="https://twitter.com/intent/tweet/?text=picoGym%20-%20rsa-pop-quiz&amp;url=https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f&amp;hashtags=ctf%2ccrypto%2cwriteup%2cRSA%2cwarmup">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share picoGym - rsa-pop-quiz on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f&amp;title=picoGym%20-%20rsa-pop-quiz&amp;summary=picoGym%20-%20rsa-pop-quiz&amp;source=https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share picoGym - rsa-pop-quiz on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f&title=picoGym%20-%20rsa-pop-quiz">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share picoGym - rsa-pop-quiz on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share picoGym - rsa-pop-quiz on whatsapp"
+        href="https://api.whatsapp.com/send?text=picoGym%20-%20rsa-pop-quiz%20-%20https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share picoGym - rsa-pop-quiz on telegram"
+        href="https://telegram.me/share/url?text=picoGym%20-%20rsa-pop-quiz&amp;url=https%3a%2f%2fshibaken28.github.io%2fmy-blog%2fpost%2fctf%2fcrypto%2fpico%2frsa-pop-quiz%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    
+<script>
+MathJax = {
+  chtml: {
+    matchFontHeight: false
+  },
+  tex: {
+    inlineMath: [['$', '$']]
+  }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    <span>&copy; 2022 <a href="https://shibaken28.github.io/my-blog/">shibak3n</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

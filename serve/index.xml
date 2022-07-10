@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>shibak3n</title>
+    <link>https://shibaken28.github.io/my-blog/</link>
+    <description>Recent content on shibak3n</description>
+    <image>
+      <url>https://shibaken28.github.io/my-blog/47</url>
+      <link>https://shibaken28.github.io/my-blog/47</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 06 Jul 2022 16:40:33 +0900</lastBuildDate><atom:link href="https://shibaken28.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jo-ken Beginner Contest 001 解説など</title>
+      <link>https://shibaken28.github.io/my-blog/post/kyopro/jbc001/</link>
+      <pubDate>Wed, 06 Jul 2022 16:40:33 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/kyopro/jbc001/</guid>
+      <description>これは何 部活動で僕が勝手に新入生向けに開催したJo-ken&amp;rsquo;s beginner Contest 001の解説記事です．
+解説 A - year to seconds 問題概要  1年は何秒か．ただし，1年は365日とする．
+ 解説 掛け算の問題です．電卓を叩かなくても，プログラムが計算してくれます．
+Python print(365*24*60*60) C++ #include &amp;lt;iostream&amp;gt; int main(){  cout&amp;lt;&amp;lt;365*60*60&amp;lt;&amp;lt;endl; } B - 単位拾い 問題概要  $P$の値が$60$以上であるか，$60$未満であるかを判定する
+ 解答 if文を使います．
+Python pythonを使う場合，インデントに注意しましょう．
+p = int(input()) if p &amp;lt; 60:  print(&amp;#34;failed&amp;#34;) else:  print(&amp;#34;passed&amp;#34;) C++ #include &amp;lt;iostream&amp;gt;using namespace std;  int main() {  int p;cin&amp;gt;&amp;gt;p;  if(p&amp;lt;60){  cout&amp;lt;&amp;lt;&amp;#34;failed&amp;#34;&amp;lt;&amp;lt;endl;  }else{  cout&amp;lt;&amp;lt;&amp;#34;passed&amp;#34;&amp;lt;&amp;lt;endl;  } } C - weeks and days 問題概要  今日が$D$日のとき，27日までが何週間何日か．</description>
+    </item>
+    
+    <item>
+      <title>コーディングでのやらかし</title>
+      <link>https://shibaken28.github.io/my-blog/post/kyopro/wa/</link>
+      <pubDate>Sat, 04 Jun 2022 19:34:10 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/kyopro/wa/</guid>
+      <description>競プロメインです．
+C,C++など 前提  コンパイルするファイルが間違っている 実行するファイルが間違っている コンパイルに失敗し，前回コンパイル成功時のファイルを実行している  コンパイルできない  ヘッダがない  人のコードパクってきたときにfuncionalヘッダがなかった   using namespaceがない 変数名とdefineの重複 vector&amp;lt;vector&amp;lt;long&amp;gt;&amp;gt; A(N,vector&amp;lt;int&amp;gt;(0))みたいに型が一致していない &amp;lt;Templete T&amp;gt;の書き忘れ  コーナーケース  N=1,K=0などの極端な値 A=Bのとき 同じクエリが複数回来るかもしれない 自己ループ，同じ辺 0の0乗,0の階乗の定義  実行が終わらない  入力を受け取りすぎている  クエリの数Qと要素数Nが混同してしまう   n重for文でインクリメントする変数を間違える n重for文で変数名が重複 計算量が多い  setに要素を大量に入れている可能性    セグフォ  cinを忘れている 二項係数ライブラリとかの前計算した配列の範囲外参照 文字列の操作中に空文字が登場する 0,1-indexedの混同  その他ハマり modを正しく取れていない  modを取ってない mod(法)の値が間違っている(998244353,1e9+7) modの取り方を間違っている  法が素数でない，逆元が存在しない mod 3とかでの二項係数はルーカスの定理を使う   modを取りながら累積和したときに負の数がでる  (A[r]-A[l-1]+mod)%modみたいな配慮   最後にマイナス1などをしている(0のときに-1が出力されてしまう)  未分類  改行(flush)しないと標準出力にでてこない cin&amp;gt;&amp;gt;a,b;みたいなことをしている  エラーが出ないことがあるのでハマりやすい   switch文でbreak忘れ make cleanを試す 型のパース，intをlongの計算にそのまま突っ込むのは良くない 調和級数の計算量勘違い コンストラクタの名前を間違えている 閉区間，半開区間などの違い  累積和で区間和を出す場合に注意   setやmapでstd::lower_boundなどは使えない  メソッドとして用意されている   01ナップザックで昇順にdpを回してしまった  それは個数制限なし   bool型をint型だと思って  bool値に2以上を入れてもサイレントに1になる   ソート後の配列をソート前の状態として扱ってしまった 格子点とグリッドマス目の関係  角の座標の扱い   不等式における累乗の注意  偶数乗した場合負の数が正になる   ビットシフト演算子の計算順序  四則演算のほうが早い(1&amp;lt;&amp;lt;2+2は1&amp;lt;&amp;lt;4で16になる)   long型リテラルにしわすれてオーバーフロー  1&amp;lt;&amp;lt;40はオーバーフローする．1L&amp;lt;&amp;lt;40が正しい．    (La)TeX  コンパイル時にできるファイルを一旦削除する _などの文字はエスケープしてあげる  関数名，変数名にありがち    </description>
+    </item>
+    
+    <item>
+      <title>競プロで痒いところに手が届くかもしれない情報まとめ</title>
+      <link>https://shibaken28.github.io/my-blog/post/kyopro/tec/</link>
+      <pubDate>Sun, 22 May 2022 03:00:38 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/kyopro/tec/</guid>
+      <description>注意  内容の正しさの保証はしません． その場しのぎの，実務で使うとしたらあまりよろしくないテクニックも載せてあります．  実装 define #define all(a) a.begin(),a.end() sort(A.begin(),A.end())やlower_boud(A.begin(),A.end(),x)を， sort(all(A))，lower(all(A),x)のように短縮できる．
+auto 型を推定してくれる．例えば，次のコードで，vectorのXを用意したが，double型に変えたくなったとする．
+ vector&amp;lt;int&amp;gt; X(10);  for(int a:X){  cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;  } すると，vectorのintとfor文のintの2つをdoubleに書き換えないといけなくなってしまう．そこで，for文のintをautoにしておくことでvectorの型さえ決めとけば楽になる．
+ vector&amp;lt;int&amp;gt; X(10);  for(auto a:X){  cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;  } usingという手もある
+ using val = int;  vector&amp;lt;val&amp;gt; X(10);  for(val a:X){  cout&amp;lt;&amp;lt;a&amp;lt;&amp;lt;endl;  } その他，型名がよくわかないもの(イテレータ，関数など)に使うと便利である．例えば，次を書くのはしんどいので
+ vector&amp;lt;int&amp;gt; X(10);  _Vector_iterator&amp;lt;_Vector_val&amp;lt;_Simple_types&amp;lt;int&amp;gt;&amp;gt;&amp;gt; a = X.begin(); autoを使う．
+ vector&amp;lt;int&amp;gt; X(10);  auto a = X.begin(); 関数について 値渡し 引数の中身がコピーされるため，関数内で値をいじっても元の値は変わらない．</description>
+    </item>
+    
+    <item>
+      <title>TSG lIVE! 8 CTFに参加しました</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/tsg8/all/</link>
+      <pubDate>Sat, 14 May 2022 14:49:48 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/tsg8/all/</guid>
+      <description>はじめに TSG lIVE! 8 CTFにチーム参加しました． crypto問を3問中2つ解いたのでwriteupを書きます．
+Forgetful RSA flagの上位$i$bitを$f_i$と表すことにする．また，$f_i^e \mod n =c_i$とする． 出力された配列cを見ると，小さい$i$について$f_i^e&amp;lt;n$であり，$f_i^e = c_i$予想できる．
+(f_4)**e = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 (f_3)**e = 43180842775472231269317593140019978555800018221814069251185173508429590158121352898575375173614411328027364697307483179849754947341597334682650188852903738734312355518341064453125 (f_2)**e = 231584178474632390847141970017375815706539969331281128078915168015826259279872 (f_1)**e = 1 例えば，次のようにプログラムを掛けば
+&amp;gt;&amp;gt;&amp;gt; from gmpy2 import iroot &amp;gt;&amp;gt;&amp;gt; e = 0x101 &amp;gt;&amp;gt;&amp;gt; c = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 &amp;gt;&amp;gt;&amp;gt; iroot(c,e) (mpz(10), True) &amp;gt;&amp;gt;&amp;gt; flagの上位4bitが0b1010であることがわかる．
+次に，最大公約数をうまく使うことで$n$を求める． $f_5^e n=c_5\mod n$より，$f_5^e - c_5 = 0 \mod n$で，$f_5^e -c_5$は$n$の倍数である． 同様に，$f_6^e - c_6$も$n$の倍数であるから，これらの最大公約数をとることで$n$が得られる． $f_5$，$f_6$として考えられる値はたかだか$4$通りであるため，全て試せばいい．
+from Crypto.Util.number import GCD c.reverse() a0 = pow(0b10100,e) a1 = pow(0b10101,e) a00 = pow(0b101000,e) a01 = pow(0b101001,e) a10 = pow(0b101010,e) a11 = pow(0b101011,e) print(GCD(a0-c[5],a00-c[6])) print(GCD(a0-c[5],a01-c[6])) print(GCD(a1-c[5],a10-c[6])) print(GCD(a1-c[5],a11-c[6])) 結果は以下の通りである．</description>
+    </item>
+    
+    <item>
+      <title>LSB Decryption Oracle Attackの実装</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/script/lsb/</link>
+      <pubDate>Thu, 12 May 2022 19:33:13 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/script/lsb/</guid>
+      <description>LSB Decryption Oracle Attack RSA暗号において，何度も暗号文を復元してくれて，その最も下のビットがわかっている場合，LSB Decryption Oracle Attackが使える． ここでは，入力$x$に対して，$x^d\mod n$が出力されるものとする． (RSAの各パラメータの説明については省略する．)
+理論 $$(2m)^e = 2^em^e = 2^ec\mod n$$ が成り立つため，$2^ec\mod n$を入力として与えると，$(2m)^e\mod n$を復元することになるため，$2m \mod n$が返ってくる． この値の偶奇で$m$の範囲がわかる．
+ もし，$0\leq2m&amp;lt;n$の場合，$2m\mod n$と$2m$は等しいため，$2m \mod n$は必ず偶数になる． もし，$n\leq2m&amp;lt;2n$の場合，$2m\mod n$は$2m-n$と等しいため，$n$が奇数であることから$2m\mod n$は必ず奇数になる．  $0&amp;lt;m&amp;lt;n$であるから，$2m$がこれ以外の値の範囲をとることはない． これにより，$2m\mod n$が偶数なら$0\leq m&amp;lt;\frac{1}{2}n$，奇数なら$\frac{1}{2}n\leq m&amp;lt;n$であることがわかる．
+次に，$4^ec\mod n$を入力に与えることについて考える．同様に，$4^ec = (4m)^c\mod n$が成り立つから，$4m\mod n$の値が返ってくる． 例えば，$2m\mod n$の出力が偶数で，$0\leq m&amp;lt;\frac{1}{2}n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
+ $0\leq4m&amp;lt;n$の場合，$4m\mod n$は$4m$と等しいため，$4m\mod n$は必ず偶数になる． $n\leq4m&amp;lt;2n$の場合，$4m\mod n$は$4m-n$と等しいため，$4m\mod n$は必ず奇数になる．  よって，$2m\mod n$が偶数で， かつ$4m\mod n$が偶数のときは，$0\leq m&amp;lt;\frac{1}{4}n$，奇数のときは$\frac{1}{4}n\leq m&amp;lt;\frac{1}{2}n$であることがわかる．
+同様に，$2m\mod n$の出力が奇数で，$\frac{1}{2}n\leq m&amp;lt;n$であることが，わかっていたとする．このとき，$4m\mod n$の偶奇は次のように決まっている．
+ $2n\leq4m&amp;lt;3n$の場合，$4m\mod n$は$4m-2n$と等しいため，$4m\mod n$は必ず偶数になる． $3n\leq4m&amp;lt;4n$の場合，$4m\mod n$は$4m-3n$と等しいため，$4m\mod n$は必ず奇数になる．  よって，$2m\mod n$が奇数で， かつ$4m\mod n$が偶数のときは，$\frac{1}{2}n\leq m&amp;lt;\frac{3}{4}n$，奇数のときは$\frac{3}{4}n\leq m&amp;lt;n$であることがわかる．</description>
+    </item>
+    
+    <item>
+      <title>picoGym - Dachshund Attacks</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/dachshund-attacks/</link>
+      <pubDate>Thu, 12 May 2022 12:23:40 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/dachshund-attacks/</guid>
+      <description>概要 What if d is too small? Connect with nc mercury.picoctf.net 36463.
+ncの内容
+Welcome to my RSA challenge! e: 103624928593399333320247354911447965825264533650971057319298353304002525474538065318852403512064726461174738193603428106904946146256008284823467554827152762569423678591697957603893052975071382627033744303434383276450203293997261442427812721673950613659922998042873117563940092261133781695925987694748389771773 n: 103910376399608681676353628245393162112102881564697113185356793045870832553995623283598951790023021111968530063336394918465350791877495297372970778126616798657973881785284282419987615918907108230154026098524221387899079560549181123756630931610952760466877749364644405065649111649647375141195338190881890507223 c: 30156643564028622673402640319494318578298751067165305755816959327117523569994850417236902775720256626905433978437761494210359833045159937002407287756120449107903682641130585193469930881110966314401974180644201866961482046321797331181951910878959864017526708803440621343824946268602601257095502437975774863711 解答 eが大きいということは，dが小さくなるので，Wiener&amp;rsquo;s attackが有効． Wiener&amp;rsquo;s attack 短い秘密鍵のRSA暗号への攻撃を参考にさせて頂きました．
+from Crypto.Util.number import long_to_bytes  #Welcome to my RSA challenge! e= 103624928593399333320247354911447965825264533650971057319298353304002525474538065318852403512064726461174738193603428106904946146256008284823467554827152762569423678591697957603893052975071382627033744303434383276450203293997261442427812721673950613659922998042873117563940092261133781695925987694748389771773 n= 103910376399608681676353628245393162112102881564697113185356793045870832553995623283598951790023021111968530063336394918465350791877495297372970778126616798657973881785284282419987615918907108230154026098524221387899079560549181123756630931610952760466877749364644405065649111649647375141195338190881890507223 c= 30156643564028622673402640319494318578298751067165305755816959327117523569994850417236902775720256626905433978437761494210359833045159937002407287756120449107903682641130585193469930881110966314401974180644201866961482046321797331181951910878959864017526708803440621343824946268602601257095502437975774863711   def f(a, b):  q, r = a//b, a%b  a0, a1 = 1, q  b0, b1 = 0, 1  while r:  a, b = b, r  q, r = a//b, a%b  a0, a1 = a1, a0 + q*a1  b0, b1 = b1, b0 + q*b1  print(long_to_bytes(pow(c,b1,n)))  f(e,n) このまま実行すると，正しくないdについてもたくさん出力されるので，grep picoなどでフラグを探す．</description>
+    </item>
+    
+    <item>
+      <title>picoGym - New Ceaser</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/new-ceaser/</link>
+      <pubDate>Thu, 12 May 2022 11:31:06 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/new-ceaser/</guid>
+      <description>概要 We found a brand new type of encryption, can you break the secret code? (Wrap with picoCTF{})
+mlnklfnknljflfmhjimkmhjhmljhjomhmmjkjpmmjmjkjpjojgjmjpjojojnjojmmkmlmijimhjmmj import string  LOWERCASE_OFFSET = ord(&amp;#34;a&amp;#34;) ALPHABET = string.ascii_lowercase[:16]  def b16_encode(plain): 	enc = &amp;#34;&amp;#34; 	for c in plain: 	binary = &amp;#34;{0:08b}&amp;#34;.format(ord(c)) 	enc += ALPHABET[int(binary[:4], 2)] 	enc += ALPHABET[int(binary[4:], 2)] 	return enc  def shift(c, k): 	t1 = ord(c) - LOWERCASE_OFFSET 	t2 = ord(k) - LOWERCASE_OFFSET 	return ALPHABET[(t1 + t2) % len(ALPHABET)]  flag = &amp;#34;redacted&amp;#34; key = &amp;#34;redacted&amp;#34; assert all([k in ALPHABET for k in key]) assert len(key) == 1  b16 = b16_encode(flag) enc = &amp;#34;&amp;#34; for i, c in enumerate(b16): 	enc += shift(c, key[i % len(key)]) print(enc) 解答 フラグは，b16_encode，shiftの順に，2段階でエンコードされているので，逆順にデコードしていく． shiftに関しては，assertの条件により，せいぜい16通りである．</description>
+    </item>
+    
+    <item>
+      <title>picoGym - Easy Peasy</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/easy-peasy/</link>
+      <pubDate>Thu, 12 May 2022 10:46:41 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/easy-peasy/</guid>
+      <description>概要 A one-time pad is unbreakable, but can you manage to recover the flag? (Wrap with picoCTF{}) nc mercury.picoctf.net 64260 otp.py
+#!/usr/bin/python3 -u import os.path  KEY_FILE = &amp;#34;key&amp;#34; KEY_LEN = 50000 FLAG_FILE = &amp;#34;flag&amp;#34;   def startup(key_location): 	flag = open(FLAG_FILE).read() 	kf = open(KEY_FILE, &amp;#34;rb&amp;#34;).read()  	start = key_location 	stop = key_location + len(flag)  	key = kf[start:stop] 	key_location = stop  	result = list(map(lambda p, k: &amp;#34;{:02x}&amp;#34;.</description>
+    </item>
+    
+    <item>
+      <title>picoGym - Mini RSA</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/mini-rsa/</link>
+      <pubDate>Thu, 12 May 2022 00:29:16 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/mini-rsa/</guid>
+      <description>概要 What happens if you have a small exponent? There is a twist though, we padded the plaintext so that (M ** e) is just barely larger than N. Let&amp;rsquo;s decrypt this
+N: 1615765684321463054078226051959887884233678317734892901740763321135213636796075462401950274602405095138589898087428337758445013281488966866073355710771864671726991918706558071231266976427184673800225254531695928541272546385146495736420261815693810544589811104967829354461491178200126099661909654163542661541699404839644035177445092988952614918424317082380174383819025585076206641993479326576180793544321194357018916215113009742654408597083724508169216182008449693917227497813165444372201517541788989925461711067825681947947471001390843774746442699739386923285801022685451221261010798837646928092277556198145662924691803032880040492762442561497760689933601781401617086600593482127465655390841361154025890679757514060456103104199255917164678161972735858939464790960448345988941481499050248673128656508055285037090026439683847266536283160142071643015434813473463469733112182328678706702116054036618277506997666534567846763938692335069955755244438415377933440029498378955355877502743215305768814857864433151287 e: 3 ciphertext (c): 1220012318588871886132524757898884422174534558055593713309088304910273991073554732659977133980685370899257850121970812405700793710546674062154237544840177616746805668666317481140872605653768484867292138139949076102907399831998827567645230986345455915692863094364797526497302082734955903755050638155202890599808146956044568639690002921620304969196755223769438221859424275683828638207433071955615349052424040706261639770492033970498727183446507482899334169592311953247661557664109356372049286283480939368007035616954029177541731719684026988849403756133033533171081378815289443019437298879607294287249591634702823432448559878065453908423094452047188125358790554039587941488937855941604809869090304206028751113018999782990033393577325766685647733181521675994939066814158759362046052998582186178682593597175186539419118605277037256659707217066953121398700583644564201414551200278389319378027058801216150663695102005048597466358061508725332471930736629781191567057009302022382219283560795941554288119544255055962 RSAの問題．$m^e$が$n$よりほんのすこしだけ大きいようである．
+解答 $c = m^e =m^3 \mod n$は，等式に変形すると，整数$k$を使って次のように表せる． $$m^3 = c + kn$$ $m^e$が$n$よりほんの少しだけ大きいということは，整数$k$は小さいということである． つまり，$k=1,2,3,4,&amp;hellip;$と順に探索していき，$m^3$となる，すなわち3乗根が整数となる値を見つければ良い． 3乗根は，2分探索で求めることができるが，gmpy2のirootを使うと楽である．
+from pwn import * from Crypto.Util.number import long_to_bytes from gmpy2 import iroot   n = 1615765684321463054078226051959887884233678317734892901740763321135213636796075462401950274602405095138589898087428337758445013281488966866073355710771864671726991918706558071231266976427184673800225254531695928541272546385146495736420261815693810544589811104967829354461491178200126099661909654163542661541699404839644035177445092988952614918424317082380174383819025585076206641993479326576180793544321194357018916215113009742654408597083724508169216182008449693917227497813165444372201517541788989925461711067825681947947471001390843774746442699739386923285801022685451221261010798837646928092277556198145662924691803032880040492762442561497760689933601781401617086600593482127465655390841361154025890679757514060456103104199255917164678161972735858939464790960448345988941481499050248673128656508055285037090026439683847266536283160142071643015434813473463469733112182328678706702116054036618277506997666534567846763938692335069955755244438415377933440029498378955355877502743215305768814857864433151287 e = 3 c = 1220012318588871886132524757898884422174534558055593713309088304910273991073554732659977133980685370899257850121970812405700793710546674062154237544840177616746805668666317481140872605653768484867292138139949076102907399831998827567645230986345455915692863094364797526497302082734955903755050638155202890599808146956044568639690002921620304969196755223769438221859424275683828638207433071955615349052424040706261639770492033970498727183446507482899334169592311953247661557664109356372049286283480939368007035616954029177541731719684026988849403756133033533171081378815289443019437298879607294287249591634702823432448559878065453908423094452047188125358790554039587941488937855941604809869090304206028751113018999782990033393577325766685647733181521675994939066814158759362046052998582186178682593597175186539419118605277037256659707217066953121398700583644564201414551200278389319378027058801216150663695102005048597466358061508725332471930736629781191567057009302022382219283560795941554288119544255055962  k = 1 while True:  m3 = c + k*n  m , t = iroot(m3,3)  # mに3乗根(整数)，tにm^3==m3のbool値が返る  if t:  print(long_to_bytes(m))  break  k+=1 余分な空白が入っているフラグが出る．</description>
+    </item>
+    
+    <item>
+      <title>picoGym - rsa-pop-quiz</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/</link>
+      <pubDate>Wed, 11 May 2022 21:16:22 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/pico/rsa-pop-quiz/</guid>
+      <description>picoCTFの過去問が，常設ctfとして楽しめるpicoGymの問題です．
+概要 Class, take your seats! It&amp;#39;s PRIME-time for a quiz... nc jupiter.challenges.picoctf.org 18821 ncすると，RSA暗号の基本知識を問われます．
+解答 基本 この問題を解くにあたって，次の各パラメータの関係を知っておく必要があります．
+$p,q$を素数，$n=pq$とする．また，$e$を適当な正の整数とする． 平文(plaintext)を$m$とすると，暗号文(ciphertext)$c$は $$c = m^e \mod n$$ で計算され，秘密鍵$d$を $$d = e^{-1} \mod \phi(n)$$ と計算すると，平文$m$が $$m = c^d \mod n$$ で求めることができる． なお，この場合，$\phi(n) = (p-1)(q-1)$である．
+pythonでは，$a^b \mod c$をpow(a,b,c)で計算することができる($b=-1$でも動作する)．
+解法 1問目 ncすると次のメッセージが表示されます．
+Good morning class! It&amp;#39;s me Ms. Adleman-Shamir-Rivest Today we will be taking a pop quiz, so I hope you studied. Cramming just will not do!</description>
+    </item>
+    
+    <item>
+      <title>CrewCTF 2022 - The Huge E</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/crew/thehugee/</link>
+      <pubDate>Mon, 09 May 2022 12:59:30 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/crew/thehugee/</guid>
+      <description>問題 ctfTimeの問題ページ out.txtは次のようになっています．
+p = 127557933868274766492781168166651795645253551106939814103375361345423596703884421796150924794852741931334746816404778765897684777811408386179315837751682393250322682273488477810275794941270780027115435485813413822503016999058941190903932883823 e1 = 219560036291700924162367491740680392841 e2 = 325829142086458078752836113369745585569 e3 = 237262361171684477270779152881433264701 c = 962976093858853504877937799237367527464560456536071770645193845048591657714868645727169308285896910567283470660044952959089092802768837038911347652160892917850466319249036343642773207046774240176141525105555149800395040339351956120433647613 平文を$m$，ある素数を$p$とすると，$m^e \bmod p = c$として暗号文$c$を求めています．ただし，$e = {e_1}^{{e_2}^{e_3}}$です． $e_1,e_2,e_3$が与えられているので，$e$を求めれば $d = e^{-1} \pmod{\phi(p)} $として$c^d \pmod p$で平文が求まります．
+しかし，$e$を実際に計算しようとすると無限時間かかります． どう計算するかが問題です．
+解答 $e$の値は$\bmod {\phi(p)}$の世界で考えても問題ありません． ${e_1}^{{e_2}^{e_3}} \pmod{\phi(p)}$の値を求めていきます． オイラーの定理より，次が成り立ちます． $${e_1}^{\phi(\phi(p))} = 1 \pmod{\phi(p)} $$ $p$は素数であるので，$\phi(p)=p-1$です(フェルマーの小定理)．よって，次のように書き換えられます． $${e_1}^{\phi(p-1)} = 1 \pmod{p-1}$$
+整数$k$と$l$を使って，${e_2}^{e_3} = \phi(p-1)k+l$と表されたとします．これは，${e_2}^{e_3}$を$\phi(p-1)$で割ったときに商が$k$，余りが$l$になったことを表しています． すると， $${e_1}^{{e_2}^{e_3}} = {e_1}^{ \phi(p-1)k+l} = ({e_1}^{\phi(p-1)})^k\cdot {e_1}^l = 1^k \cdot {e_1}^l = {e_1}^l \pmod{p-1}$$
+と計算できます．つまり，$l={e_2}^{e_3} \pmod{\phi(p-1)}$として，${e_1}^l \pmod{p-1}$を計算すれば$e$が求まります．</description>
+    </item>
+    
+    <item>
+      <title>crypto問でよく使うライブラリ，関数など</title>
+      <link>https://shibaken28.github.io/my-blog/post/ctf/crypto/general/</link>
+      <pubDate>Mon, 09 May 2022 01:34:02 +0900</pubDate>
+      
+      <guid>https://shibaken28.github.io/my-blog/post/ctf/crypto/general/</guid>
+      <description>目的 しょっちゅう忘れてはググってるのでまとめます．
+Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
+&amp;gt;&amp;gt;&amp;gt; bytes_to_long(b&amp;#39;hello&amp;#39;) 448378203247 &amp;gt;&amp;gt;&amp;gt; long_to_bytes(0x68656c6c6f) b&amp;#39;hello&amp;#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．
+&amp;gt;&amp;gt;&amp;gt; inverse(3,7) 5 &amp;gt;&amp;gt;&amp;gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．
+&amp;gt;&amp;gt;&amp;gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される
+&amp;gt;&amp;gt;&amp;gt; getPrime(10) 911 &amp;gt;&amp;gt;&amp;gt; bin(911) &amp;#39;0b1110001111&amp;#39; &amp;gt;&amp;gt;&amp;gt; Crypto.PublicKey pemファイルを開くことができる． 使用例
+from Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(&amp;#39;key.pem&amp;#39;,&amp;#39;rb&amp;#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&amp;#34;n:&amp;#34;,pubkey.n) print(&amp;#34;e:&amp;#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
+sagemath  </description>
+    </item>
+    
+    
+    
+  </channel>
+</rss>
