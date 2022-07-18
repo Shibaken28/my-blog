@@ -170,12 +170,13 @@ p = 1275579338682747664927811681666517956452535511069398141033753613454235967038
   </header>
   <div class="entry-content">
     <p>目的 しょっちゅう忘れてはググってるのでまとめます．
-Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
+Python標準機能 文字コード変換 基数変換 Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
 &gt;&gt;&gt; bytes_to_long(b&#39;hello&#39;) 448378203247 &gt;&gt;&gt; long_to_bytes(0x68656c6c6f) b&#39;hello&#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．
 &gt;&gt;&gt; inverse(3,7) 5 &gt;&gt;&gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．
 &gt;&gt;&gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される
-&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． 使用例
-from Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
+&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． openssl rsa -text -in idk.key
+使用例
+from Crypto.PublicKey import RSA f=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
 sagemath  </p>
   </div>
   <footer class="entry-footer"><span title='2022-05-09 01:34:02 +0900 JST'>2022-05-09</span>&nbsp;·&nbsp;1 分&nbsp;·&nbsp;Me</footer>

@@ -18,12 +18,13 @@
 <title>crypto問でよく使うライブラリ，関数など | shibak3n</title>
 <meta name="keywords" content="ctf, crypto">
 <meta name="description" content="目的 しょっちゅう忘れてはググってるのでまとめます．
-Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
+Python標準機能 文字コード変換 基数変換 Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
 &gt;&gt;&gt; bytes_to_long(b&#39;hello&#39;) 448378203247 &gt;&gt;&gt; long_to_bytes(0x68656c6c6f) b&#39;hello&#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．
 &gt;&gt;&gt; inverse(3,7) 5 &gt;&gt;&gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．
 &gt;&gt;&gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される
-&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． 使用例
-from Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
+&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． openssl rsa -text -in idk.key
+使用例
+from Crypto.PublicKey import RSA f=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
 sagemath  ">
 <meta name="author" content="Me">
 <link rel="canonical" href="https://shibaken28.github.io/my-blog/post/ctf/crypto/general/">
@@ -60,12 +61,13 @@ if (!doNotTrack) {
 }
 </script><meta property="og:title" content="crypto問でよく使うライブラリ，関数など" />
 <meta property="og:description" content="目的 しょっちゅう忘れてはググってるのでまとめます．
-Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
+Python標準機能 文字コード変換 基数変換 Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
 &gt;&gt;&gt; bytes_to_long(b&#39;hello&#39;) 448378203247 &gt;&gt;&gt; long_to_bytes(0x68656c6c6f) b&#39;hello&#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．
 &gt;&gt;&gt; inverse(3,7) 5 &gt;&gt;&gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．
 &gt;&gt;&gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される
-&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． 使用例
-from Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
+&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． openssl rsa -text -in idk.key
+使用例
+from Crypto.PublicKey import RSA f=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
 sagemath  " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://shibaken28.github.io/my-blog/post/ctf/crypto/general/" /><meta property="og:image" content="https://shibaken28.github.io/my-blog/47"/><meta property="article:section" content="post" />
@@ -77,12 +79,13 @@ sagemath  " />
 
 <meta name="twitter:title" content="crypto問でよく使うライブラリ，関数など"/>
 <meta name="twitter:description" content="目的 しょっちゅう忘れてはググってるのでまとめます．
-Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
+Python標準機能 文字コード変換 基数変換 Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．
 &gt;&gt;&gt; bytes_to_long(b&#39;hello&#39;) 448378203247 &gt;&gt;&gt; long_to_bytes(0x68656c6c6f) b&#39;hello&#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．
 &gt;&gt;&gt; inverse(3,7) 5 &gt;&gt;&gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．
 &gt;&gt;&gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される
-&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． 使用例
-from Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
+&gt;&gt;&gt; getPrime(10) 911 &gt;&gt;&gt; bin(911) &#39;0b1110001111&#39; &gt;&gt;&gt; Crypto.PublicKey pemファイルを開くことができる． openssl rsa -text -in idk.key
+使用例
+from Crypto.PublicKey import RSA f=open(&#39;key.pem&#39;,&#39;rb&#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(&#34;n:&#34;,pubkey.n) print(&#34;e:&#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．
 sagemath  "/>
 
 
@@ -112,12 +115,12 @@ sagemath  "/>
   "@type": "BlogPosting",
   "headline": "crypto問でよく使うライブラリ，関数など",
   "name": "crypto問でよく使うライブラリ，関数など",
-  "description": "目的 しょっちゅう忘れてはググってるのでまとめます．\nCrypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．\n\u0026gt;\u0026gt;\u0026gt; bytes_to_long(b\u0026#39;hello\u0026#39;) 448378203247 \u0026gt;\u0026gt;\u0026gt; long_to_bytes(0x68656c6c6f) b\u0026#39;hello\u0026#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．\n\u0026gt;\u0026gt;\u0026gt; inverse(3,7) 5 \u0026gt;\u0026gt;\u0026gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．\n\u0026gt;\u0026gt;\u0026gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される\n\u0026gt;\u0026gt;\u0026gt; getPrime(10) 911 \u0026gt;\u0026gt;\u0026gt; bin(911) \u0026#39;0b1110001111\u0026#39; \u0026gt;\u0026gt;\u0026gt; Crypto.PublicKey pemファイルを開くことができる． 使用例\nfrom Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open(\u0026#39;key.pem\u0026#39;,\u0026#39;rb\u0026#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(\u0026#34;n:\u0026#34;,pubkey.n) print(\u0026#34;e:\u0026#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．\nsagemath  ",
+  "description": "目的 しょっちゅう忘れてはググってるのでまとめます．\nPython標準機能 文字コード変換 基数変換 Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．\n\u0026gt;\u0026gt;\u0026gt; bytes_to_long(b\u0026#39;hello\u0026#39;) 448378203247 \u0026gt;\u0026gt;\u0026gt; long_to_bytes(0x68656c6c6f) b\u0026#39;hello\u0026#39; inverse inverse(a,b)でaをmodbでの逆元を得られる．\n\u0026gt;\u0026gt;\u0026gt; inverse(3,7) 5 \u0026gt;\u0026gt;\u0026gt; 3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．\n\u0026gt;\u0026gt;\u0026gt; pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される\n\u0026gt;\u0026gt;\u0026gt; getPrime(10) 911 \u0026gt;\u0026gt;\u0026gt; bin(911) \u0026#39;0b1110001111\u0026#39; \u0026gt;\u0026gt;\u0026gt; Crypto.PublicKey pemファイルを開くことができる． openssl rsa -text -in idk.key\n使用例\nfrom Crypto.PublicKey import RSA f=open(\u0026#39;key.pem\u0026#39;,\u0026#39;rb\u0026#39;) pubkey = RSA.importKey(f.read()) print(pubkey) print(\u0026#34;n:\u0026#34;,pubkey.n) print(\u0026#34;e:\u0026#34;,pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．\nsagemath  ",
   "keywords": [
     "ctf", "crypto"
   ],
-  "articleBody": "目的 しょっちゅう忘れてはググってるのでまとめます．\nCrypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．\n bytes_to_long(b'hello') 448378203247  long_to_bytes(0x68656c6c6f) b'hello' inverse inverse(a,b)でaをmodbでの逆元を得られる．\n inverse(3,7) 5  3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．\n pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される\n getPrime(10) 911  bin(911) '0b1110001111'  Crypto.PublicKey pemファイルを開くことができる． 使用例\nfrom Crypto.PublicKey import RSA openssl rsa -text -in idk.keyf=open('key.pem','rb') pubkey = RSA.importKey(f.read()) print(pubkey) print(\"n:\",pubkey.n) print(\"e:\",pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．\nsagemath  ",
-  "wordCount" : "54",
+  "articleBody": "目的 しょっちゅう忘れてはググってるのでまとめます．\nPython標準機能 文字コード変換 基数変換 Crypto.Util.number long_to_bytes,bytes_to_long bytes型とlong型を変換する．\n bytes_to_long(b'hello') 448378203247  long_to_bytes(0x68656c6c6f) b'hello' inverse inverse(a,b)でaをmodbでの逆元を得られる．\n inverse(3,7) 5  3*inverse(3,7)%7 1 なお，デフォルトで使えるpow関数で代用可能．\n pow(3,-1,7) 5 getPrime getPrime(a)でaビットの素数が生成される\n getPrime(10) 911  bin(911) '0b1110001111'  Crypto.PublicKey pemファイルを開くことができる． openssl rsa -text -in idk.key\n使用例\nfrom Crypto.PublicKey import RSA f=open('key.pem','rb') pubkey = RSA.importKey(f.read()) print(pubkey) print(\"n:\",pubkey.n) print(\"e:\",pubkey.e) gmpy2 iroot iroot(a,b)でaのb乗根が得られる．タプル型で返る．\nsagemath  ",
+  "wordCount" : "58",
   "inLanguage": "ja",
   "datePublished": "2022-05-09T01:34:02+09:00",
   "dateModified": "2022-05-09T01:34:02+09:00",
@@ -227,6 +230,14 @@ sagemath  "/>
                 <li>
                     <a href="#%e7%9b%ae%e7%9a%84" aria-label="目的">目的</a></li>
                 <li>
+                    <a href="#python%e6%a8%99%e6%ba%96%e6%a9%9f%e8%83%bd" aria-label="Python標準機能">Python標準機能</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%87%e5%ad%97%e3%82%b3%e3%83%bc%e3%83%89%e5%a4%89%e6%8f%9b" aria-label="文字コード変換">文字コード変換</a></li>
+                <li>
+                    <a href="#%e5%9f%ba%e6%95%b0%e5%a4%89%e6%8f%9b" aria-label="基数変換">基数変換</a></li></ul>
+                </li>
+                <li>
                     <a href="#cryptoutilnumber" aria-label="Crypto.Util.number">Crypto.Util.number</a><ul>
                         
                 <li>
@@ -254,6 +265,9 @@ sagemath  "/>
 
   <div class="post-content"><h2 id="目的">目的<a hidden class="anchor" aria-hidden="true" href="#目的">#</a></h2>
 <p>しょっちゅう忘れてはググってるのでまとめます．</p>
+<h2 id="python標準機能">Python標準機能<a hidden class="anchor" aria-hidden="true" href="#python標準機能">#</a></h2>
+<h3 id="文字コード変換">文字コード変換<a hidden class="anchor" aria-hidden="true" href="#文字コード変換">#</a></h3>
+<h3 id="基数変換">基数変換<a hidden class="anchor" aria-hidden="true" href="#基数変換">#</a></h3>
 <h2 id="cryptoutilnumber">Crypto.Util.number<a hidden class="anchor" aria-hidden="true" href="#cryptoutilnumber">#</a></h2>
 <h3 id="long_to_bytesbytes_to_long">long_to_bytes,bytes_to_long<a hidden class="anchor" aria-hidden="true" href="#long_to_bytesbytes_to_long">#</a></h3>
 <p>bytes型とlong型を変換する．</p>
@@ -279,9 +293,10 @@ sagemath  "/>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;&gt;&gt;</span>
 </span></span></code></pre></div><h2 id="cryptopublickey">Crypto.PublicKey<a hidden class="anchor" aria-hidden="true" href="#cryptopublickey">#</a></h2>
 <p>pemファイルを開くことができる．
-使用例</p>
+openssl rsa -text -in idk.key</p>
+<p>使用例</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.PublicKey <span style="color:#f92672">import</span> RSA
-</span></span><span style="display:flex;"><span>openssl rsa <span style="color:#f92672">-</span>text <span style="color:#f92672">-</span><span style="color:#f92672">in</span> idk<span style="color:#f92672">.</span>keyf<span style="color:#f92672">=</span>open(<span style="color:#e6db74">&#39;key.pem&#39;</span>,<span style="color:#e6db74">&#39;rb&#39;</span>)
+</span></span><span style="display:flex;"><span>f<span style="color:#f92672">=</span>open(<span style="color:#e6db74">&#39;key.pem&#39;</span>,<span style="color:#e6db74">&#39;rb&#39;</span>)
 </span></span><span style="display:flex;"><span>pubkey <span style="color:#f92672">=</span> RSA<span style="color:#f92672">.</span>importKey(f<span style="color:#f92672">.</span>read())
 </span></span><span style="display:flex;"><span>print(pubkey)
 </span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;n:&#34;</span>,pubkey<span style="color:#f92672">.</span>n)

@@ -9,6 +9,13 @@ draft: false
 ## 目的
 しょっちゅう忘れてはググってるのでまとめます．
 
+## Python標準機能
+### 文字コード変換
+
+
+### 基数変換
+
+
 ## Crypto.Util.number
 
 ### long_to_bytes,bytes_to_long
@@ -47,10 +54,12 @@ b'hello'
 
 ## Crypto.PublicKey
 pemファイルを開くことができる．
+openssl rsa -text -in idk.key
+
 使用例
 ```python
 from Crypto.PublicKey import RSA
-openssl rsa -text -in idk.keyf=open('key.pem','rb')
+f=open('key.pem','rb')
 pubkey = RSA.importKey(f.read())
 print(pubkey)
 print("n:",pubkey.n)
